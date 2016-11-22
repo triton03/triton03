@@ -82,7 +82,7 @@ void Player::Update()
 		timer += GameTime().GetFrameDeltaTime();
 
 		//ダメージ受けてから経った時間
-		if (timer > 0.3) {
+		if (timer > 0.4) {
 			info = None;
 		}
 	}

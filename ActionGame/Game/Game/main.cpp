@@ -1,7 +1,4 @@
 #include "stdafx.h"
-#include "Player.h"
-#include "Map.h"
-#include "PlayerHPBar.h"
 #include "StartMenu.h"
 
 CLight g_defaultLight;	//デフォルトライト。
@@ -75,11 +72,6 @@ int WINAPI wWinMain(
 	//tkEngineの初期化。
 	InitTkEngine( hInst );
 
-	//gameCamera = NewGO<Camera>(0);	//カメラを生成
-	//g_player = NewGO<Player>(0);	//プレイヤー
-	//NewGO<Map>(0);					//マップ
-	//NewGO<CoinManager>(0);			//コイン
-	//NewGO<PlayerHPBar>(0);
 	NewGO<StartMenu>(0);
 	Engine().RunGameLoop();		//ゲームループを実行。
 

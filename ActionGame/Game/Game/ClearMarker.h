@@ -1,3 +1,7 @@
+/*
+	クリアマーカー
+*/
+
 #pragma once
 class ClearMarker
 {
