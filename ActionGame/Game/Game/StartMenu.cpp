@@ -4,7 +4,6 @@
 #include "Map.h"
 #include "PlayerHPBar.h"
 #include "Camera.h"
-#include "BackGround.h"
 
 namespace {
 	const CVector2 backSize = { 1280.0f, 720.f };
@@ -56,7 +55,6 @@ void StartMenu::Update()
 		StartSound.Play(false);
 		flag = true;
 
-		//NewGO<BackGround>(0);
 		gameCamera = NewGO<Camera>(0);	//カメラを生成
 		g_player = NewGO<Player>(0);	//プレイヤー
 		NewGO<Map>(0);					//マップ

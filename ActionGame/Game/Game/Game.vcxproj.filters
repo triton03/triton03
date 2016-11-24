@@ -77,9 +77,6 @@
     <ClCompile Include="ClearMarker.cpp">
       <Filter>Source Files\Item</Filter>
     </ClCompile>
-    <ClCompile Include="BackGround.cpp">
-      <Filter>Source Files\Map</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -120,9 +117,6 @@
     </ClInclude>
     <ClInclude Include="ClearMarker.h">
       <Filter>Source Files\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="BackGround.h">
-      <Filter>Source Files\Map</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
