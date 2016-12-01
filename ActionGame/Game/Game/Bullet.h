@@ -1,5 +1,5 @@
 /*
-	攻撃の弾
+	プレイヤーの攻撃の弾
 */
 
 #pragma once
@@ -12,6 +12,7 @@ public:
 	~Bullet();
 	void Update();
 	void Render(CRenderContext& renderContext);
+	float Distance(CVector3& objectPos);
 
 private:
 	CVector3		position;		//ポジション
@@ -23,3 +24,5 @@ private:
 
 	const float		speed = 1.8f;
 };
+
+extern Bullet*				bullet[8];

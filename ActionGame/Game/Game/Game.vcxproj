@@ -168,9 +168,11 @@
     <ClCompile Include="Coin.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="heal.cpp" />
+    <ClCompile Include="Interface.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapChip.cpp" />
+    <ClCompile Include="Number.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerHPBar.cpp" />
     <ClCompile Include="Skelton.cpp" />
@@ -189,8 +191,10 @@
     <ClInclude Include="Coin.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="heal.h" />
+    <ClInclude Include="Interface.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapChip.h" />
+    <ClInclude Include="Number.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerHPBar.h" />
     <ClInclude Include="Skelton.h" />

@@ -62,7 +62,7 @@ private:
 	enum AnimationNo {
 		AnimationStand,		//立ち
 		AnimationRun,		//走り
-		AnimationJump,		//ジャンプ
+		AnimationDeath,		//ジャンプ
 	};
 
 /*メンバ変数*/
@@ -76,9 +76,9 @@ private:
 	CQuaternion				rotation = CQuaternion::Identity;	//回転
 	CVector3				angle = { 0.0f,0.0f,1.0f };			//回転値?
 
-	//CAnimation		animation;			//アニメーション。
-	//AnimationNo		currentAnimSetNo;	//今のモーション
-	//AnimationNo		anim;				//変更前のモーション
+	CAnimation		animation;			//アニメーション。
+	AnimationNo		currentAnimSetNo;	//今のモーション
+	AnimationNo		anim;				//変更前のモーション
 
 	CSoundSource		JumpSound;		//ジャンプボイス
 	CSoundSource		damageSound;	//ダメージボイス
@@ -91,7 +91,6 @@ private:
 	PlayerInfo			info = None;	//プレイヤーの状態
 	const float			speed = 10.0f;
 
-	Bullet*				bullet[8];		//弾を格納
 	int					bulletNum = 0;
 	bool				isBullet=true;	//弾フラグ
 

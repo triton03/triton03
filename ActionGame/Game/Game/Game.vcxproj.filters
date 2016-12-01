@@ -77,6 +77,12 @@
     <ClCompile Include="ClearMarker.cpp">
       <Filter>Source Files\Item</Filter>
     </ClCompile>
+    <ClCompile Include="Number.cpp">
+      <Filter>Source Files\Display</Filter>
+    </ClCompile>
+    <ClCompile Include="Interface.cpp">
+      <Filter>Source Files\Display</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -117,6 +123,12 @@
     </ClInclude>
     <ClInclude Include="ClearMarker.h">
       <Filter>Source Files\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Number.h">
+      <Filter>Source Files\Display</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface.h">
+      <Filter>Source Files\Display</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

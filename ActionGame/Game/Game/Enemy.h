@@ -14,7 +14,8 @@ public:
 	void Reset();
 	void Update();
 	void Render(CRenderContext& renderContext);
-	void Move();			//“®‚«
+	virtual void Move();			//“®‚«
+	void Damage();
 
 protected:
 	//ƒ‚[ƒVƒ‡ƒ“

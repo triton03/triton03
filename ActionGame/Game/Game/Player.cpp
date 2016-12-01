@@ -17,16 +17,19 @@ Player::~Player()
 }
 
 void Player::Start() {
-	skinModelData.LoadModelData("Assets/modelData/sorcerer_A.X", NULL);
+	skinModelData.LoadModelData("Assets/modelData/sorcerer_A.X", &animation);
 	skinModel.Init(&skinModelData);
 	skinModel.SetLight(&g_defaultLight);			//デフォルトライトを設定。
+	skinModel.SetShadowCasterFlag(true);
+	skinModel.SetShadowReceiverFlag(true);
 
 	position = FirstPosition;
 	centralPos.Add(position, central);
 	characterController.Init(0.5f, 1.0f, position);	//キャラクタコントローラの初期化。
 
 	//animation.SetAnimationEndTime(AnimationRun, 0.8);
-	//animation.PlayAnimation(AnimationStand);
+	animation.SetAnimationLoopFlag(AnimationDeath, false);
+	animation.PlayAnimation(AnimationStand);
 
 //効果音セット
 	JumpSound.Init("Assets/sound/Jump.wav");
@@ -54,6 +57,8 @@ void Player::Reset() {
 	state.coinNum = 0;
 
 	timer = 0.0f;
+
+	currentAnimSetNo = AnimationStand;
 }
 
 void Player::Update()
@@ -67,10 +72,11 @@ void Player::Update()
 	HealingSound.Update();
 
 	//アニメーション更新
-	//animation.Update(1.0f / 30.0f);
-	//anim = currentAnimSetNo;
+	animation.Update(1.0f / 30.0f);
+	anim = currentAnimSetNo;
 
 	if (info == isDeath){
+		currentAnimSetNo = AnimationDeath;
 		timer += GameTime().GetFrameDeltaTime();
 
 		//死んでから経った時間
@@ -104,13 +110,11 @@ void Player::Update()
 	centralPos.Add(position, central);
 
 //モーションが変わってたら変更する
-	//if (currentAnimSetNo != anim) {
-	//	animation.PlayAnimation(currentAnimSetNo);
-	//}
+	if (currentAnimSetNo != anim) {
+		animation.PlayAnimation(currentAnimSetNo);
+	}
 	skinModel.Update(position, rotation, CVector3::One);
-
 }
-
 
 //プレイヤーの動き
 CVector3 Player::Move()
@@ -143,13 +147,20 @@ CVector3 Player::Move()
 		bulletNum = (bulletNum + 1) % 8;
 		isBullet = false;
 	}
+
+	//移動してる
 	if (move.x != 0.0f || move.z != 0.0f)
 	{
 		angle.x = -Pad(0).GetLStickXF();
 		angle.z = -Pad(0).GetLStickYF();
 
+		currentAnimSetNo = AnimationRun;
+
 		//向き変更
 		rotation.SetRotation(CVector3::AxisY, atan2f(angle.x, angle.z));
+	}
+	else {
+		currentAnimSetNo = AnimationStand;
 	}
 
 	return move;

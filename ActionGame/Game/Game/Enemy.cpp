@@ -2,6 +2,7 @@
 #include "Enemy.h"
 #include "Player.h"
 #include "Camera.h"
+#include "Bullet.h"
 
 
 Enemy::Enemy()
@@ -11,6 +12,7 @@ Enemy::Enemy()
 
 Enemy::~Enemy()
 {
+	characterController.RemoveRigidBoby();
 }
 
 void Enemy::Init(CVector3 pos)
@@ -51,6 +53,12 @@ void Enemy::Update()
 		g_player->Damage(centralPos);
 	}
 
+	this->Damage();
+
+	if (state.hp <= 0) {
+		DeleteGO(this);
+	}
+
 	//“®‚«
 	Move();
 
@@ -71,4 +79,15 @@ void Enemy::Render(CRenderContext& renderContext)
 void Enemy::Move()
 {
 
+}
+
+void Enemy::Damage()
+{
+	for (int i = 0; i < 8; i++) {
+		if (bullet[i] == nullptr) {	continue;}
+
+		if (bullet[i]->Distance(position) < 3.0) {
+			state.hp--;
+		}
+	}
 }

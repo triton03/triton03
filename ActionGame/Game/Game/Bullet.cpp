@@ -6,6 +6,8 @@
 CSkinModelData	b_OriginSkinModelData;	//スキンモデルデータ
 bool			b_flag = false;		//すでに読み込んでいるか
 
+Bullet*				bullet[8];		//弾を格納
+
 Bullet::Bullet()
 {
 	//モデルデータをロード(1回だけ)
@@ -57,4 +59,15 @@ void Bullet::Update() {
 
 void Bullet::Render(CRenderContext& renderContext) {
 	model.Draw(renderContext, gameCamera->GetViewMatrix(), gameCamera->GetProjectionMatrix());
+}
+
+//弾と対象の距離を計算
+float Bullet::Distance(CVector3& objectPos)
+{
+	CVector3 diff;
+
+	//プレイヤーの座標から敵の座標を減算
+	diff.Subtract(position, objectPos);
+	//敵とプレイヤーの距離を計算
+	return diff.Length();
 }
