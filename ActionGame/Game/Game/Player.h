@@ -53,7 +53,6 @@ private:
 	//プレイヤーのステータス
 	struct Status
 	{
-		int			coinNum;	//獲得コイン数
 		int			hp;			//プレイヤーのHP
 		int			score;		//獲得スコア
 	};
@@ -89,7 +88,6 @@ private:
 
 	Status				state;			//プレイヤーのステータス
 	PlayerInfo			info = None;	//プレイヤーの状態
-	const float			speed = 10.0f;
 
 	int					bulletNum = 0;
 	bool				isBullet=true;	//弾フラグ

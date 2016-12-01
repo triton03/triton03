@@ -40,7 +40,7 @@ void Player::Start() {
 	HealingSound.Init("Assets/sound/cure.wav");
 
 	state.hp = HP_MAX;
-	state.coinNum = 0;
+	state.score = 0;
 }
 
 //ステータスリセット
@@ -54,7 +54,7 @@ void Player::Reset() {
 	angle = { 0.0f,0.0f,1.0f };			//回転値?
 
 	state.hp = HP_MAX;
-	state.coinNum = 0;
+	state.score = 0;
 
 	timer = 0.0f;
 
@@ -119,6 +119,11 @@ void Player::Update()
 //プレイヤーの動き
 CVector3 Player::Move()
 {
+	float	speed = 10.0f;	
+	
+	if (characterController.IsJump()) {
+		speed = speed * 0.9;
+	}
 	//キャラクターの移動速度
 	CVector3 move = characterController.GetMoveSpeed();
 	move.x = -Pad(0).GetLStickXF() * speed;
@@ -126,10 +131,11 @@ CVector3 Player::Move()
 
 	//Aボタンでジャンプ
 	if (Pad(0).IsTrigger(enButtonA) && !characterController.IsJump()) {
-		move.y = 10.0f;
+		move.y = 13.0f;
 		characterController.Jump();
 		JumpSound.Play(false);	//効果音再生
 	}
+
 
 	if (!isBullet) {
 		timer += GameTime().GetFrameDeltaTime();
@@ -221,7 +227,7 @@ void Player::Damage(CVector3 ePos)
 //コイン獲得
 void Player::CoinGet() 
 {
-	state.coinNum++;
+	state.score++;
 	GetCoinSound.Play(false);	//効果音再生
 }
 
