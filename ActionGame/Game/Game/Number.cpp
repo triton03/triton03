@@ -20,7 +20,7 @@ void Number::Start()
 {
 	for (int i = 0; i < 10; i++) {
 		char filePath[256];
-		sprintf(filePath, "Assets/modelData/%d.png", i);
+		sprintf(filePath, "Assets/sprite/number/%d.png", i);
 		m_numberTex[i].Load(filePath);
 
 		m_number[i].Init(&m_numberTex[i]);

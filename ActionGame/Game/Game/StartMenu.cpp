@@ -2,7 +2,7 @@
 #include "StartMenu.h"
 #include "Player.h"
 #include "Map.h"
-#include "PlayerHPBar.h"
+#include "Interface.h"
 #include "Camera.h"
 
 namespace {
@@ -58,7 +58,7 @@ void StartMenu::Update()
 		gameCamera = NewGO<Camera>(0);	//カメラを生成
 		g_player = NewGO<Player>(0);	//プレイヤー
 		NewGO<Map>(0);					//マップ
-		NewGO<PlayerHPBar>(0);
+		NewGO<Interface>(0);
 	}
 
 }
