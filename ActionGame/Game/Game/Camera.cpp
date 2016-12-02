@@ -16,7 +16,7 @@ Camera::~Camera()
 
 void Camera::Start()
 {
-	playerDist.Set(0.0f, 10.0f, 30.0f);
+	playerDist.Set(0.0f, 15.0f, 30.0f);
 	camera.SetPosition(playerDist);
 	camera.SetTarget(CVector3::Zero);
 	camera.SetFar(100000.0f);

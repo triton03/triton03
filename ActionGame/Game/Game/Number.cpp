@@ -3,7 +3,7 @@
 
 
 namespace {
-	const CVector2 numSize = { 40.2f, 50.2f };	//数字のサイズ
+	const CVector2 numSize = { 30.0f, 40.0f };	//数字のサイズ
 }
 
 Number::Number()

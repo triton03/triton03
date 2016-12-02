@@ -13,6 +13,7 @@ public:
 	void Update();
 	void Render(CRenderContext& renderContext);
 	float Distance(CVector3& objectPos);
+	bool flag = false;	//消滅フラグ
 
 private:
 	CVector3		position;		//ポジション

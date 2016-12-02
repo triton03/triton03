@@ -46,7 +46,7 @@ void Bullet::Update() {
 	float lendth = diff.Length();
 
 	//”­–C
-	if (lendth > 80.0f || lendth < -80.0f) {
+	if (flag || lendth > 80.0f || lendth < -80.0f) {
 		DeleteGO(this);
 	}
 

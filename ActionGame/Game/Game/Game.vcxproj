@@ -166,6 +166,8 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ClearMarker.cpp" />
     <ClCompile Include="Coin.cpp" />
+    <ClCompile Include="DisplayScore.cpp" />
+    <ClCompile Include="DisplayTime.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="heal.cpp" />
     <ClCompile Include="Interface.cpp" />
@@ -189,6 +191,8 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ClearMarker.h" />
     <ClInclude Include="Coin.h" />
+    <ClInclude Include="DisplayScore.h" />
+    <ClInclude Include="DisplayTime.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="heal.h" />
     <ClInclude Include="Interface.h" />
