@@ -99,6 +99,6 @@ namespace tkEngine{
 		float				m_radius = 0.0f;
 		float				m_height = 0.0f;		
 		CRigidBody			m_rigidBody;					//剛体。
-		float				m_gravity = -9.8f;				//重力。
+		float				m_gravity = -19.8f;				//重力。
 	};
 }

@@ -119,6 +119,12 @@ void Player::Update()
 //プレイヤーの動き
 CVector3 Player::Move()
 {
+	float		speed = 10.0f;
+	//ジャンプ時の重力
+	if (characterController.IsJump()) {
+		speed = speed * 0.8f;
+	}
+
 	//キャラクターの移動速度
 	CVector3 move = characterController.GetMoveSpeed();
 	move.x = -Pad(0).GetLStickXF() * speed;
@@ -126,7 +132,7 @@ CVector3 Player::Move()
 
 	//Aボタンでジャンプ
 	if (Pad(0).IsTrigger(enButtonA) && !characterController.IsJump()) {
-		move.y = 10.0f;
+		move.y = 13.0f;
 		characterController.Jump();
 		JumpSound.Play(false);	//効果音再生
 	}
@@ -205,7 +211,7 @@ void Player::Damage(CVector3 ePos)
 	back.Normalize();
 
 	//反動のはやさ
-	float b_speed = 12.0f;
+	float b_speed = 4.3f;
 	back.x *= b_speed;
 	back.y *= b_speed;
 
