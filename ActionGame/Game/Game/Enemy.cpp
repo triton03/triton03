@@ -88,6 +88,7 @@ void Enemy::Damage()
 
 		if (bullet[i]->Distance(position) < 3.0) {
 			state.hp--;
+			bullet[i]->flag = true;
 		}
 	}
 }

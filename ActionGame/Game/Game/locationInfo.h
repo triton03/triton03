@@ -4,6 +4,12 @@
 	CVector3(-23.87f, 0.24f, 1.60f),             //平行移動
 	CQuaternion(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
 },
+//skelton
+{
+	"skelton",
+	CVector3(-23.87f, 0.24f, -5.60f),             //平行移動
+	CQuaternion(0.00f, 0.00f, 0.00f, 1.00f),  //回転
+},
 //coin
 {
 	"coin",

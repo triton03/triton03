@@ -14,7 +14,7 @@ public:
 	void PostRender(CRenderContext& renderContext) override;
 private:
 	CSprite  m_hpHeart[3];		//HPのハート。
-	CSprite  m_hpBarBack;		//HPバーの背景。
+	CSprite  m_hpHeartD[3];		//ダメージハート
 	CTexture m_hpHeartTex;		//HPハートのテクスチャ。
-	CTexture m_hpBarBackTex;	//HPバーの背景のテクスチャ
+	CTexture m_hpHeartTexD;		//ダメージハートのテクスチャ
 };

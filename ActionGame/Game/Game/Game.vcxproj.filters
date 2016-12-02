@@ -21,9 +21,6 @@
     <Filter Include="Source Files\Bullet">
       <UniqueIdentifier>{f5b9c742-15b0-4d57-b60d-2816984c8226}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\StartMenue">
-      <UniqueIdentifier>{b310dc2a-3070-4048-bae5-f5119ddec14b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Enemy">
       <UniqueIdentifier>{49c6c0e1-2242-4175-ae6e-e67ec3e3b945}</UniqueIdentifier>
     </Filter>
@@ -32,6 +29,9 @@
     </Filter>
     <Filter Include="Source Files\Display">
       <UniqueIdentifier>{b780dae6-822f-4172-af68-5c9509c6271d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Menue">
+      <UniqueIdentifier>{b310dc2a-3070-4048-bae5-f5119ddec14b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -60,7 +60,7 @@
       <Filter>Source Files\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="StartMenu.cpp">
-      <Filter>Source Files\StartMenue</Filter>
+      <Filter>Source Files\Menue</Filter>
     </ClCompile>
     <ClCompile Include="Skelton.cpp">
       <Filter>Source Files\Enemy</Filter>
@@ -81,6 +81,12 @@
       <Filter>Source Files\Display</Filter>
     </ClCompile>
     <ClCompile Include="Interface.cpp">
+      <Filter>Source Files\Display</Filter>
+    </ClCompile>
+    <ClCompile Include="DisplayScore.cpp">
+      <Filter>Source Files\Display</Filter>
+    </ClCompile>
+    <ClCompile Include="DisplayTime.cpp">
       <Filter>Source Files\Display</Filter>
     </ClCompile>
   </ItemGroup>
@@ -107,7 +113,7 @@
       <Filter>Source Files\Bullet</Filter>
     </ClInclude>
     <ClInclude Include="StartMenu.h">
-      <Filter>Source Files\StartMenue</Filter>
+      <Filter>Source Files\Menue</Filter>
     </ClInclude>
     <ClInclude Include="Skelton.h">
       <Filter>Source Files\Enemy</Filter>
@@ -128,6 +134,12 @@
       <Filter>Source Files\Display</Filter>
     </ClInclude>
     <ClInclude Include="Interface.h">
+      <Filter>Source Files\Display</Filter>
+    </ClInclude>
+    <ClInclude Include="DisplayScore.h">
+      <Filter>Source Files\Display</Filter>
+    </ClInclude>
+    <ClInclude Include="DisplayTime.h">
       <Filter>Source Files\Display</Filter>
     </ClInclude>
   </ItemGroup>
