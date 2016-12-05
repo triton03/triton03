@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "DisplayTime.h"
+#include "Player.h"
 
 namespace {
 	const CVector2 StrSize = { 110.0f, 43.0f };	//•¶Žš‚ÌƒTƒCƒY
@@ -45,7 +46,18 @@ void DisplayTime::Start()
 }
 void DisplayTime::Update()
 {
+	int time = (int)(g_player->GetTime());
 
+	num[0]->NumSet((time / 600));
+	time %= 600;
+
+	num[1]->NumSet((time / 60));
+	time %= 60;
+
+	num[2]->NumSet(time / 10);
+	time %= 10;
+
+	num[3]->NumSet(time);
 }
 void DisplayTime::PostRender(CRenderContext& renderContext)
 {

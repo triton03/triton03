@@ -15,6 +15,6 @@ private:
 	CSprite		 m_Str;		//HPバーの背景。
 	CTexture	m_StrTex;		//HPバーの背景のテクスチャ
 
-	Number*		num[4];
+	Number*		num[5];
 };
 

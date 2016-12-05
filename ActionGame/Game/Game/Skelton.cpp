@@ -12,9 +12,10 @@ Skelton::Skelton()
 {
 	sprintf(filePath, "Assets/modelData/skelton.X");
 	state.hp = 1;
-	state.score = 100;
+	state.score = 150;
 }
 
 Skelton::~Skelton()
 {
+
 }

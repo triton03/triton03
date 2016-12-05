@@ -21,6 +21,8 @@ void Enemy::Init(CVector3 pos)
 
 	skinModel.Init(&skinModelData);
 	skinModel.SetLight(&g_defaultLight);			//デフォルトライトを設定。
+	skinModel.SetShadowCasterFlag(true);
+	skinModel.SetShadowReceiverFlag(true);
 
 	position = pos;
 	centralPos.Add(position, central);
@@ -42,10 +44,7 @@ void Enemy::Update()
 		state.hp = 0;
 	}
 
-	//HPが0になった
-	//if (state.hp == 0) {
-	//	死んだときの処理
-	//}
+
 
 	float length = g_player->Distance(centralPos);
 
@@ -55,7 +54,11 @@ void Enemy::Update()
 
 	this->Damage();
 
+	//HPが0になった
 	if (state.hp <= 0) {
+		g_player->SetScore(state.score);
+		skinModel.SetShadowCasterFlag(false);
+		skinModel.SetShadowReceiverFlag(false);
 		DeleteGO(this);
 	}
 

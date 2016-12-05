@@ -5,7 +5,7 @@
 Player* g_player;
 
 namespace {
-	const CVector3 FirstPosition = { 0.0f, 3.5f ,0.0f};	//最初の位置
+	const CVector3 FirstPosition = { 0.0f, 5.0f ,0.0f};	//最初の位置
 }
 
 Player::Player()
@@ -40,7 +40,7 @@ void Player::Start() {
 	HealingSound.Init("Assets/sound/cure.wav");
 
 	state.hp = HP_MAX;
-	state.coinNum = 0;
+	state.score = 0;
 }
 
 //ステータスリセット
@@ -54,15 +54,18 @@ void Player::Reset() {
 	angle = { 0.0f,0.0f,1.0f };			//回転値?
 
 	state.hp = HP_MAX;
-	state.coinNum = 0;
+	state.score = 0;
 
 	timer = 0.0f;
+	playTime = 0.0f;
 
 	currentAnimSetNo = AnimationStand;
 }
 
 void Player::Update()
 {
+	playTime += GameTime().GetFrameDeltaTime();
+
 	//サウンド更新
 	JumpSound.Update();
 	damageSound.Update();
@@ -75,12 +78,19 @@ void Player::Update()
 	animation.Update(1.0f / 30.0f);
 	anim = currentAnimSetNo;
 
+	//落下死
+	if (info!=isDeath && centralPos.y < -10.0f) {
+		state.hp = 0;
+		info = isDeath;
+		deathSound.Play(false);
+	}
+
 	if (info == isDeath){
 		currentAnimSetNo = AnimationDeath;
 		timer += GameTime().GetFrameDeltaTime();
 
 		//死んでから経った時間
-		if (timer > 1.3) {
+		if (timer > 1.5) {
 			Reset();
 		}
 	}
@@ -88,16 +98,9 @@ void Player::Update()
 		timer += GameTime().GetFrameDeltaTime();
 
 		//ダメージ受けてから経った時間
-		if (timer > 0.4) {
+		if (timer > 0.5) {
 			info = None;
 		}
-	}
-
-	//落下死
-	if (centralPos.y < -10.0f) {
-		state.hp = 0;
-		info = isDeath;
-		deathSound.Play(false);
 	}
 
 	if (info == None) {
@@ -227,7 +230,8 @@ void Player::Damage(CVector3 ePos)
 //コイン獲得
 void Player::CoinGet() 
 {
-	state.coinNum++;
+	state.score += 100;
+
 	GetCoinSound.Play(false);	//効果音再生
 }
 

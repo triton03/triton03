@@ -48,12 +48,22 @@ public:
 	PlayerInfo GetInfo() {		//今の状態を返す
 		return info;
 	}
+	float GetTime() {
+		return playTime;
+	}
+	int GetScore() {
+		return state.score;
+	}
+
+/*セッター*/
+	void SetScore(int s) {
+		state.score += s;
+	}
 
 private:
 	//プレイヤーのステータス
 	struct Status
 	{
-		int			coinNum;	//獲得コイン数
 		int			hp;			//プレイヤーのHP
 		int			score;		//獲得スコア
 	};
@@ -94,5 +104,7 @@ private:
 	bool				isBullet=true;	//弾フラグ
 
 	float				timer = 0.0f;	//タイマー。
+
+	float				playTime = 0.0f;
 };
 extern Player* g_player;
