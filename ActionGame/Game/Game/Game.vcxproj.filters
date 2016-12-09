@@ -24,14 +24,17 @@
     <Filter Include="Source Files\Item">
       <UniqueIdentifier>{1c0a59d1-0d1c-440b-875b-811903da1845}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Display">
-      <UniqueIdentifier>{b780dae6-822f-4172-af68-5c9509c6271d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Menue">
-      <UniqueIdentifier>{b310dc2a-3070-4048-bae5-f5119ddec14b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Player\Bullet">
       <UniqueIdentifier>{f5b9c742-15b0-4d57-b60d-2816984c8226}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Info">
+      <UniqueIdentifier>{b780dae6-822f-4172-af68-5c9509c6271d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Display">
+      <UniqueIdentifier>{b310dc2a-3070-4048-bae5-f5119ddec14b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Info\Number">
+      <UniqueIdentifier>{c885a812-b7bf-47e7-9f84-fc0cde2de472}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -60,7 +63,7 @@
       <Filter>Source Files\Player\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="StartMenu.cpp">
-      <Filter>Source Files\Menue</Filter>
+      <Filter>Source Files\Display</Filter>
     </ClCompile>
     <ClCompile Include="Skelton.cpp">
       <Filter>Source Files\Enemy</Filter>
@@ -72,21 +75,24 @@
       <Filter>Source Files\Item</Filter>
     </ClCompile>
     <ClCompile Include="PlayerHPBar.cpp">
-      <Filter>Source Files\Display</Filter>
+      <Filter>Source Files\Info</Filter>
     </ClCompile>
     <ClCompile Include="ClearMarker.cpp">
       <Filter>Source Files\Item</Filter>
     </ClCompile>
-    <ClCompile Include="Number.cpp">
-      <Filter>Source Files\Display</Filter>
-    </ClCompile>
     <ClCompile Include="Interface.cpp">
-      <Filter>Source Files\Display</Filter>
+      <Filter>Source Files\Info</Filter>
     </ClCompile>
     <ClCompile Include="DisplayScore.cpp">
-      <Filter>Source Files\Display</Filter>
+      <Filter>Source Files\Info</Filter>
     </ClCompile>
     <ClCompile Include="DisplayTime.cpp">
+      <Filter>Source Files\Info</Filter>
+    </ClCompile>
+    <ClCompile Include="Number.cpp">
+      <Filter>Source Files\Info\Number</Filter>
+    </ClCompile>
+    <ClCompile Include="Switching.cpp">
       <Filter>Source Files\Display</Filter>
     </ClCompile>
   </ItemGroup>
@@ -113,7 +119,7 @@
       <Filter>Source Files\Player\Bullet</Filter>
     </ClInclude>
     <ClInclude Include="StartMenu.h">
-      <Filter>Source Files\Menue</Filter>
+      <Filter>Source Files\Display</Filter>
     </ClInclude>
     <ClInclude Include="Skelton.h">
       <Filter>Source Files\Enemy</Filter>
@@ -125,21 +131,24 @@
       <Filter>Source Files\Item</Filter>
     </ClInclude>
     <ClInclude Include="PlayerHPBar.h">
-      <Filter>Source Files\Display</Filter>
+      <Filter>Source Files\Info</Filter>
     </ClInclude>
     <ClInclude Include="ClearMarker.h">
       <Filter>Source Files\Item</Filter>
     </ClInclude>
-    <ClInclude Include="Number.h">
-      <Filter>Source Files\Display</Filter>
-    </ClInclude>
     <ClInclude Include="Interface.h">
-      <Filter>Source Files\Display</Filter>
+      <Filter>Source Files\Info</Filter>
     </ClInclude>
     <ClInclude Include="DisplayScore.h">
-      <Filter>Source Files\Display</Filter>
+      <Filter>Source Files\Info</Filter>
     </ClInclude>
     <ClInclude Include="DisplayTime.h">
+      <Filter>Source Files\Info</Filter>
+    </ClInclude>
+    <ClInclude Include="Number.h">
+      <Filter>Source Files\Info\Number</Filter>
+    </ClInclude>
+    <ClInclude Include="Switching.h">
       <Filter>Source Files\Display</Filter>
     </ClInclude>
   </ItemGroup>

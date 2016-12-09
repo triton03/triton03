@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Player.h"
 #include "Camera.h"
+#include "Switching.h"
 
 Player* g_player;
 
@@ -64,7 +65,6 @@ void Player::Reset() {
 
 void Player::Update()
 {
-	playTime += GameTime().GetFrameDeltaTime();
 
 	//サウンド更新
 	JumpSound.Update();
@@ -80,8 +80,15 @@ void Player::Update()
 
 	if (info == isClear) {
 		//クリアしたときの動き
+		timer += GameTime().GetFrameDeltaTime();
+		if (timer >= 4.0f) {
+			NewGO<Switching>(0);
+		}
 
+		return;
 	}
+
+	playTime += GameTime().GetFrameDeltaTime();	//プレイ時間カウント
 
 	//落下死
 	if (info!=isDeath && centralPos.y < -10.0f) {

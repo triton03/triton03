@@ -1,13 +1,13 @@
 /*
-	スタートメニュー
+	ステージ切り替え
 */
 
 #pragma once
-class StartMenu : public IGameObject
+class Switching : public IGameObject
 {
 public:
-	StartMenu();
-	~StartMenu();
+	Switching();
+	~Switching();
 	void Start() override;
 	void Update() override;
 	void PostRender(CRenderContext& renderContext) override;
@@ -16,8 +16,5 @@ private:
 	CTexture			backTex;		//HPバーのテクスチャ。
 	CSprite				moji;
 	CTexture			mojiTex;
-	CSoundSource		StartSound;		//サウンド
-	CSoundSource		StartBGM;
-	bool				flag = false;
 };
 
