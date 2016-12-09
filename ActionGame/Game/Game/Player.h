@@ -14,6 +14,7 @@ public:
 		None,		//通常
 		isDamage,	//ダメージ受けた
 		isDeath,	//やられちゃった
+		isClear,	//クリア
 	};
 	const int	HP_MAX = 3;	//プレイヤーの最大HP
 	const CVector3	central = { 0.0f, 1.8f,0.0f };	//プレイヤーの真ん中の高さ
@@ -59,6 +60,9 @@ public:
 	void SetScore(int s) {
 		state.score += s;
 	}
+	void SetClear() {
+		info = isClear;
+	}
 
 private:
 	//プレイヤーのステータス
@@ -86,9 +90,9 @@ private:
 	CQuaternion				rotation = CQuaternion::Identity;	//回転
 	CVector3				angle = { 0.0f,0.0f,1.0f };			//回転値?
 
-	CAnimation		animation;			//アニメーション。
-	AnimationNo		currentAnimSetNo;	//今のモーション
-	AnimationNo		anim;				//変更前のモーション
+	CAnimation			animation;			//アニメーション。
+	AnimationNo			currentAnimSetNo;	//今のモーション
+	AnimationNo			anim;				//変更前のモーション
 
 	CSoundSource		JumpSound;		//ジャンプボイス
 	CSoundSource		damageSound;	//ダメージボイス

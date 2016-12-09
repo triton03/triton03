@@ -78,6 +78,11 @@ void Player::Update()
 	animation.Update(1.0f / 30.0f);
 	anim = currentAnimSetNo;
 
+	if (info == isClear) {
+		//クリアしたときの動き
+
+	}
+
 	//落下死
 	if (info!=isDeath && centralPos.y < -10.0f) {
 		state.hp = 0;
@@ -106,7 +111,6 @@ void Player::Update()
 	if (info == None) {
 		characterController.SetMoveSpeed(Move());	//移動速度を設定
 	}
-
 
 	characterController.Execute();			//キャラクターコントロール実行
 	position = characterController.GetPosition();	//実行結果の受け取り

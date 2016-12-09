@@ -10,9 +10,9 @@
 	CVector3(-23.87f, 0.24f, -5.60f),             //平行移動
 	CQuaternion(0.00f, 0.00f, 0.00f, 1.00f),  //回転
 },
-//coin
+//clearMarker
 {
-	"coin",
+	"clearMarker",
 	CVector3(-40.85f, 1.40f, 1.57f),             //平行移動
 	CQuaternion(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
 },

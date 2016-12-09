@@ -4,6 +4,7 @@
 #include "Skelton.h"
 #include "Coin.h"
 #include "heal.h"
+#include "ClearMarker.h"
 
 struct SMapInfo {
 	const char*	modelName;
@@ -43,6 +44,10 @@ void Map::Start()
 		else if (strcmp("item", mapLocInfo[i].modelName) == 0) {
 			Heal* heal = NewGO<Heal>(0);
 			heal->Init(mapLocInfo[i].position, mapLocInfo[i].rotation);
+		}
+		else if (strcmp("clearMarker", mapLocInfo[i].modelName) == 0) {
+			ClearMarker* marker = NewGO<ClearMarker>(0);
+			marker->Init(mapLocInfo[i].position, mapLocInfo[i].rotation);
 		}
 		else {
 			MapChip* mapChip = NewGO<MapChip>(0);
