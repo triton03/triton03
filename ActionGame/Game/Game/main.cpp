@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "StartMenu.h"
+#include "SceneManager.h"
 
 CLight g_defaultLight;	//デフォルトライト。
 
@@ -72,7 +72,7 @@ int WINAPI wWinMain(
 	//tkEngineの初期化。
 	InitTkEngine( hInst );
 
-	NewGO<StartMenu>(0);
+	scene = NewGO<SceneManager>(0);
 	Engine().RunGameLoop();		//ゲームループを実行。
 
 	return 0;

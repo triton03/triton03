@@ -15,6 +15,7 @@ public:
 		isDamage,	//ダメージ受けた
 		isDeath,	//やられちゃった
 		isClear,	//クリア
+		isStop,
 	};
 	const int	HP_MAX = 3;	//プレイヤーの最大HP
 	const CVector3	central = { 0.0f, 1.8f,0.0f };	//プレイヤーの真ん中の高さ

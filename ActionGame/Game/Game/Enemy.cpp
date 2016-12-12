@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "Camera.h"
 #include "Bullet.h"
+#include "SceneManager.h"
 
 
 Enemy::Enemy()
@@ -44,8 +45,6 @@ void Enemy::Update()
 		state.hp = 0;
 	}
 
-
-
 	float length = g_player->Distance(centralPos);
 
 	if (length <= 3.0f) {
@@ -55,7 +54,7 @@ void Enemy::Update()
 	this->Damage();
 
 	//HP‚ª0‚É‚È‚Á‚½
-	if (state.hp <= 0) {
+	if (scene->isDelete()|| state.hp <= 0) {
 		g_player->SetScore(state.score);
 		skinModel.SetShadowCasterFlag(false);
 		skinModel.SetShadowReceiverFlag(false);

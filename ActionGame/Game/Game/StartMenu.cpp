@@ -1,9 +1,5 @@
 #include "stdafx.h"
 #include "StartMenu.h"
-#include "Player.h"
-#include "Map.h"
-#include "Interface.h"
-#include "Camera.h"
 
 namespace {
 	const CVector2 backSize = { 1280.0f, 720.f };
@@ -38,29 +34,20 @@ void StartMenu::Start()
 	moji.SetPivot({ 0.5f, 0.5f });		//ピボットは中央
 	moji.SetPosition(strPos);
 
-	StartSound.Init("Assets/sound/start.wav");
-	StartBGM.InitStreaming("Assets/sound/title.wav");
+	StartSound = NewGO<CSoundSource>(0);
+	StartBGM = NewGO<CSoundSource>(0);
+	StartSound->Init("Assets/sound/start.wav");
+	StartBGM->InitStreaming("Assets/sound/title.wav");
+
+	StartBGM->Play(true);
 }
 void StartMenu::Update()
 {
-	if (flag) {
-		DeleteGO(this);
-	}
-
-	StartBGM.Update();
-	StartBGM.Play(true);
-
 	if (!flag && Pad(0).IsTrigger(enButtonStart)) {
-		StartBGM.Stop();
-		StartSound.Play(false);
+		StartBGM->Stop();
+		StartSound->Play(false);
 		flag = true;
-
-		gameCamera = NewGO<Camera>(0);	//カメラを生成
-		g_player = NewGO<Player>(0);	//プレイヤー
-		NewGO<Map>(0);					//マップ
-		NewGO<Interface>(0);
 	}
-
 }
 void StartMenu::PostRender(CRenderContext& renderContext)
 {

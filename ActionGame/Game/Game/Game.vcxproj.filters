@@ -36,6 +36,9 @@
     <Filter Include="Source Files\Info\Number">
       <UniqueIdentifier>{c885a812-b7bf-47e7-9f84-fc0cde2de472}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\SceneManager">
+      <UniqueIdentifier>{3ad2ac42-d355-48ce-a016-fe2f70de2133}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -77,9 +80,6 @@
     <ClCompile Include="PlayerHPBar.cpp">
       <Filter>Source Files\Info</Filter>
     </ClCompile>
-    <ClCompile Include="ClearMarker.cpp">
-      <Filter>Source Files\Item</Filter>
-    </ClCompile>
     <ClCompile Include="Interface.cpp">
       <Filter>Source Files\Info</Filter>
     </ClCompile>
@@ -94,6 +94,15 @@
     </ClCompile>
     <ClCompile Include="Switching.cpp">
       <Filter>Source Files\Display</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Source Files\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="ClearMarker.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Source Files\Item</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -133,9 +142,6 @@
     <ClInclude Include="PlayerHPBar.h">
       <Filter>Source Files\Info</Filter>
     </ClInclude>
-    <ClInclude Include="ClearMarker.h">
-      <Filter>Source Files\Item</Filter>
-    </ClInclude>
     <ClInclude Include="Interface.h">
       <Filter>Source Files\Info</Filter>
     </ClInclude>
@@ -150,6 +156,15 @@
     </ClInclude>
     <ClInclude Include="Switching.h">
       <Filter>Source Files\Display</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Source Files\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="ClearMarker.h">
+      <Filter>Source Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Source Files\Item</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

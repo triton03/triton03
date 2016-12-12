@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "MapChip.h"
 #include "Camera.h"
+#include "SceneManager.h"
 
 
 MapChip::MapChip()
@@ -10,6 +11,7 @@ MapChip::MapChip()
 
 MapChip::~MapChip()
 {
+	PhysicsWorld().RemoveRigidBody(&rigidBody);
 }
 
 void MapChip::Init(const char* modelName, CVector3 position, CQuaternion rotation)
@@ -48,7 +50,9 @@ void MapChip::Init(const char* modelName, CVector3 position, CQuaternion rotatio
 
 void MapChip::Update()
 {
-	//‰½‚à‚µ‚È‚¢
+	if (scene->isDelete()) {
+		DeleteGO(this);
+	}
 }
 
 void MapChip::Render(CRenderContext& renderContext)

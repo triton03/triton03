@@ -5,6 +5,7 @@
 #include "Coin.h"
 #include "heal.h"
 #include "ClearMarker.h"
+#include "Player.h"
 
 struct SMapInfo {
 	const char*	modelName;
@@ -55,11 +56,14 @@ void Map::Start()
 		}
 	}
 
-	bgm.InitStreaming("Assets/sound/bgm1.wav");
-	bgm.Play(true);
+	bgm = NewGO<CSoundSource>(0);
+	bgm->InitStreaming("Assets/sound/bgm1.wav");
+	bgm->Play(true);
 }
 
 void Map::Update()
 {
-	bgm.Update();
+	if (g_player->GetInfo() == Player::isClear) {
+		DeleteGO(bgm);
+	}
 }

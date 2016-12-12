@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "Player.h"
 #include "Camera.h"
-#include "Switching.h"
 
 Player* g_player;
 
@@ -28,7 +27,6 @@ void Player::Start() {
 	centralPos.Add(position, central);
 	characterController.Init(0.5f, 1.0f, position);	//キャラクタコントローラの初期化。
 
-	//animation.SetAnimationEndTime(AnimationRun, 0.8);
 	animation.SetAnimationLoopFlag(AnimationDeath, false);
 	animation.PlayAnimation(AnimationStand);
 
@@ -50,6 +48,7 @@ void Player::Reset() {
 
 	position = FirstPosition;		//プレイヤーの座標をセット
 	characterController.SetPosition(position);
+	characterController.SetMoveSpeed(CVector3::Zero);
 
 	rotation = CQuaternion::Identity;	//回転
 	angle = { 0.0f,0.0f,1.0f };			//回転値?
@@ -61,10 +60,13 @@ void Player::Reset() {
 	playTime = 0.0f;
 
 	currentAnimSetNo = AnimationStand;
+	animation.PlayAnimation(currentAnimSetNo);
 }
 
 void Player::Update()
 {
+	//プレイヤー停止状態
+	if (info == isStop) { return; }
 
 	//サウンド更新
 	JumpSound.Update();
@@ -81,10 +83,9 @@ void Player::Update()
 	if (info == isClear) {
 		//クリアしたときの動き
 		timer += GameTime().GetFrameDeltaTime();
-		if (timer >= 4.0f) {
-			NewGO<Switching>(0);
+		if (timer >= 5.0f) {
+			info = isStop;	//プレイヤー停止
 		}
-
 		return;
 	}
 
@@ -188,6 +189,7 @@ CVector3 Player::Move()
 
 void Player::Render(CRenderContext& renderContext)
 {
+	if (info == isStop) { return; }
 	skinModel.Draw(renderContext, gameCamera->GetViewMatrix(), gameCamera->GetProjectionMatrix());
 }
 

@@ -26,7 +26,7 @@ void Switching::Start()
 }
 void Switching::Update()
 {
-
+	//‰½‚à‚µ‚È‚¢?
 }
 void Switching::PostRender(CRenderContext& renderContext)
 {

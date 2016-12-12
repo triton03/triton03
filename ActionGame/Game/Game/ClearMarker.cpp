@@ -2,6 +2,7 @@
 #include "ClearMarker.h"
 #include "Camera.h"
 #include "Player.h"
+#include "SceneManager.h"
 
 
 ClearMarker::ClearMarker()
@@ -36,6 +37,10 @@ void ClearMarker::Init(CVector3 position, CQuaternion rotation)
 
 void ClearMarker::Update()
 {
+	if (scene->isDelete()) {
+		DeleteGO(this);
+	}
+
 	//‚È‚ñ‚©ƒNƒŠƒAðŒ‚Æ‚©
 	CVector3 pos = g_player->GetPosition();
 

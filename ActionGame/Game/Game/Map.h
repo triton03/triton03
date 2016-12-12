@@ -11,6 +11,6 @@ public:
 	void Start();
 	void Update();
 
-	CSoundSource	bgm;		//サウンド
+	CSoundSource*	bgm;		//サウンド
 };
 
