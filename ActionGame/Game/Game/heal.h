@@ -12,5 +12,8 @@ public:
 	Heal();
 	~Heal();
 	void Work();
+
+private:
+	CSoundSource*	SE;
 };
 

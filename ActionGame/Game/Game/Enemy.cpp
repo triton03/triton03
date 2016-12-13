@@ -85,12 +85,26 @@ void Enemy::Move()
 
 void Enemy::Damage()
 {
-	for (int i = 0; i < 8; i++) {
-		if (bullet[i] == nullptr) {	continue;}
+	if (g_player->GetInfo() == Player::isClear) { return; }
+
+	for (int i = 0; i < BulletMAX; i++) {
+
+		if (bullet[i] == nullptr) { continue; }
 
 		if (bullet[i]->Distance(position) < 3.0) {
 			state.hp--;
-			bullet[i]->flag = true;
+			bullet[i]->SetFlag(true);
+			DeleteGO(bullet[i]);
+			bullet[i] = nullptr;
+
+			SE = NewGO<CSoundSource>(0);
+			if (state.hp > 0) {
+				SE->Init("Assets/sound/hit.wav");
+			}
+			else {
+				SE->Init("Assets/sound/enemy_death.wav");
+			}
+			SE->Play(false);
 		}
 	}
 }

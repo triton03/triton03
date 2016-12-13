@@ -21,5 +21,6 @@ protected:
 
 	CVector3	m_position;	//コインの位置
 	bool get_flag = false;	//ゲットしたか
+
 };
 

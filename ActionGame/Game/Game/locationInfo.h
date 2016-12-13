@@ -4,16 +4,16 @@
 	CVector3(-23.87f, 0.24f, 1.60f),             //平行移動
 	CQuaternion(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
 },
-//skelton
+//skelton_fighter
 {
-	"skelton",
+	"skelton_fighter",
 	CVector3(-23.87f, 0.24f, -5.60f),             //平行移動
 	CQuaternion(0.00f, 0.00f, 0.00f, 1.00f),  //回転
 },
 //clearMarker
 {
 	"clearMarker",
-	CVector3(-40.85f, 1.40f, 1.57f),             //平行移動
+	CVector3(-40.85f, 0.00f, -5.57f),             //平行移動
 	CQuaternion(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
 },
 //coin

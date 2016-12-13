@@ -14,6 +14,7 @@ Coin::Coin()
 	}
 	//CSkinModel‚ð‰Šú‰»
 	skinModelData.CloneModelData(OriginSkinModelData, NULL);
+	score = 100;
 }
 
 
@@ -23,6 +24,9 @@ Coin::~Coin()
 
 void Coin::Work()
 {
-	g_player->CoinGet();
+	SE = NewGO<CSoundSource>(0);
+	SE->Init("Assets/sound/get.wav");
+	SE->Play(false);
+	g_player->SetScore(score);
 	DeleteGO(this);
 }

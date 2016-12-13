@@ -11,5 +11,12 @@ public:
 	Coin();
 	~Coin();
 	void Work();
+	int GetScore() {
+		return score;
+	}
+
+private:
+	CSoundSource*	SE;
+	int				score;
 };
 

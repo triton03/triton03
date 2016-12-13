@@ -15,7 +15,6 @@ public:
 		isDamage,	//ダメージ受けた
 		isDeath,	//やられちゃった
 		isClear,	//クリア
-		isStop,
 	};
 	const int	HP_MAX = 3;	//プレイヤーの最大HP
 	const CVector3	central = { 0.0f, 1.8f,0.0f };	//プレイヤーの真ん中の高さ
@@ -31,7 +30,6 @@ public:
 
 	float Distance(CVector3& objectPos);	//プレイヤーとの距離を返す
 	void Damage(CVector3 e_pos);		//ダメージ処理
-	void CoinGet();
 	bool healing();
 
 /*ゲッター*/
@@ -51,10 +49,14 @@ public:
 		return info;
 	}
 	float GetTime() {
-		return playTime;
+		return state.time;
 	}
 	int GetScore() {
 		return state.score;
+	}
+
+	bool isStop() {
+		return StopFlag;
 	}
 
 /*セッター*/
@@ -64,6 +66,9 @@ public:
 	void SetClear() {
 		info = isClear;
 	}
+	void SetFullHP() {
+		state.hp = HP_MAX;
+	}
 
 private:
 	//プレイヤーのステータス
@@ -71,6 +76,7 @@ private:
 	{
 		int			hp;			//プレイヤーのHP
 		int			score;		//獲得スコア
+		float		time;
 	};
 
 //モーション
@@ -98,18 +104,16 @@ private:
 	CSoundSource		JumpSound;		//ジャンプボイス
 	CSoundSource		damageSound;	//ダメージボイス
 	CSoundSource		deathSound;		//やられボイス
-	CSoundSource		ShotSound;		//弾発射
-	CSoundSource		GetCoinSound;	//コイン獲得音
-	CSoundSource		HealingSound;	//回復音
 
 	Status				state;			//プレイヤーのステータス
+	Status				total;			//合計
 	PlayerInfo			info = None;	//プレイヤーの状態
 
 	int					bulletNum = 0;
 	bool				isBullet=true;	//弾フラグ
+	bool				StopFlag = false;
 
 	float				timer = 0.0f;	//タイマー。
 
-	float				playTime = 0.0f;
 };
 extern Player* g_player;

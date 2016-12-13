@@ -1,8 +1,26 @@
 ﻿//skelton
 {
 	"skelton",
-	CVector3(-23.87f, 0.24f, 1.60f),             //平行移動
+	CVector3(-10.87f, 0.24f, -5.60f),             //平行移動
 	CQuaternion(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
+},
+//skelton
+{
+	"skelton",
+	CVector3(-10.87f, 0.24f, 0.60f),             //平行移動
+	CQuaternion(0.00f, 0.00f, 0.00f, 1.00f),  //回転
+},
+//skelton
+{
+	"skelton",
+	CVector3(-10.87f, 0.24f, 5.60f),             //平行移動
+	CQuaternion(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
+},
+//skelton_fighter
+{
+	"skelton_fighter",
+	CVector3(-28.87f, 0.24f, 0.60f),             //平行移動
+	CQuaternion(0.00f, 0.00f, 0.00f, 1.00f),  //回転
 },
 //coin
 {
@@ -19,7 +37,7 @@
 //coin
 {
 	"coin",
-	CVector3(-10.27f, 1.72f, 1.57f),             //平行移動
+	CVector3(-3.27f, 1.72f, -4.57f),             //平行移動
 	CQuaternion(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
 },
 //box
@@ -61,7 +79,7 @@
 //item
 {
 	"item",
-	CVector3(-28.63f, 2.02f, 1.24f),             //平行移動
+	CVector3(-15.63f, 5.02f, 3.24f),             //平行移動
 	CQuaternion(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
 },
 //coin
@@ -69,4 +87,11 @@
 	"coin",
 	CVector3(-23.74f, 6.09f, 1.57f),             //平行移動
 	CQuaternion(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
+},
+
+//clearMarker
+{
+	"clearMarker",
+	CVector3(-40.85f, 3.40f, -5.57f),             //平行移動
+	CQuaternion(0.00f, 0.00f, 0.00f, 1.00f),  //回転
 },

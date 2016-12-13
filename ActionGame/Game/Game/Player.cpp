@@ -14,17 +14,19 @@ Player::Player()
 
 Player::~Player()
 {
+	characterController.RemoveRigidBoby();
 }
 
 void Player::Start() {
+	//モデルの読み込み
 	skinModelData.LoadModelData("Assets/modelData/sorcerer_A.X", &animation);
 	skinModel.Init(&skinModelData);
-	skinModel.SetLight(&g_defaultLight);			//デフォルトライトを設定。
+	skinModel.SetLight(&g_defaultLight);	//デフォルトライトを設定。
 	skinModel.SetShadowCasterFlag(true);
 	skinModel.SetShadowReceiverFlag(true);
 
-	position = FirstPosition;
-	centralPos.Add(position, central);
+	position = FirstPosition;			//ポジションの設定
+	centralPos.Add(position, central);	//モデルの中心を設定
 	characterController.Init(0.5f, 1.0f, position);	//キャラクタコントローラの初期化。
 
 	animation.SetAnimationLoopFlag(AnimationDeath, false);
@@ -34,12 +36,13 @@ void Player::Start() {
 	JumpSound.Init("Assets/sound/Jump.wav");
 	damageSound.Init("Assets/sound/damage.wav");
 	deathSound.Init("Assets/sound/death.wav");
-	ShotSound.Init("Assets/sound/Shot.wav");
-	GetCoinSound.Init("Assets/sound/get.wav");
-	HealingSound.Init("Assets/sound/cure.wav");
 
 	state.hp = HP_MAX;
 	state.score = 0;
+	state.time = 0.0f;
+
+	total.score = 0;
+	total.time = 0.0f;
 }
 
 //ステータスリセット
@@ -53,43 +56,60 @@ void Player::Reset() {
 	rotation = CQuaternion::Identity;	//回転
 	angle = { 0.0f,0.0f,1.0f };			//回転値?
 
-	state.hp = HP_MAX;
 	state.score = 0;
+	state.time = 0.0f;
 
 	timer = 0.0f;
-	playTime = 0.0f;
 
 	currentAnimSetNo = AnimationStand;
 	animation.PlayAnimation(currentAnimSetNo);
+
+	StopFlag = false;
+	bulletNum = 0;
+	for (int i = 0; i < BulletMAX; i++) {
+		bullet[i] = nullptr;
+	}
 }
 
 void Player::Update()
 {
 	//プレイヤー停止状態
-	if (info == isStop) { return; }
+	if (StopFlag) { return; }
 
 	//サウンド更新
 	JumpSound.Update();
 	damageSound.Update();
 	deathSound.Update();
-	ShotSound.Update();
-	GetCoinSound.Update();
-	HealingSound.Update();
 
 	//アニメーション更新
 	animation.Update(1.0f / 30.0f);
 	anim = currentAnimSetNo;
 
-	if (info == isClear) {
-		//クリアしたときの動き
-		timer += GameTime().GetFrameDeltaTime();
-		if (timer >= 5.0f) {
-			info = isStop;	//プレイヤー停止
+	for (int i = 0; i < BulletMAX; i++) {
+		if (bullet[i] != nullptr && bullet[i]->GetFlag()) {
+			DeleteGO(bullet[i]);
+			bullet[i] = bullet[i] = nullptr;
 		}
-		return;
 	}
 
-	playTime += GameTime().GetFrameDeltaTime();	//プレイ時間カウント
+	if (info != isDeath && info != isClear) {
+		state.time += GameTime().GetFrameDeltaTime();	//プレイ時間カウント
+	}
+
+	if (info == isClear) {
+		//クリアしたときの動き
+
+		timer += GameTime().GetFrameDeltaTime();
+		if (timer >= 1.0f) {
+			rotation = CQuaternion::Identity;	//こっち向き
+		}
+		if (timer >= 5.0f) {
+			total.score += state.score;
+			total.time += state.time;
+			StopFlag=true;	//プレイヤー停止
+		}
+		characterController.SetMoveSpeed({0.0f,-5.0f,0.0f});
+	}
 
 	//落下死
 	if (info!=isDeath && centralPos.y < -10.0f) {
@@ -103,8 +123,9 @@ void Player::Update()
 		timer += GameTime().GetFrameDeltaTime();
 
 		//死んでから経った時間
-		if (timer > 1.5) {
-			Reset();
+		if (timer > 1.3) {
+			StopFlag = true;
+			characterController.SetPosition(FirstPosition);
 		}
 	}
 	else if (info == isDamage) {
@@ -163,9 +184,8 @@ CVector3 Player::Move()
 	}
 	//Bボタンで弾発射
 	if (Pad(0).IsPress(enButtonB) && isBullet) {
-		ShotSound.Play(false);
 		bullet[bulletNum] = NewGO<Bullet>(0);
-		bulletNum = (bulletNum + 1) % 8;
+		bulletNum = (bulletNum + 1) % BulletMAX;
 		isBullet = false;
 	}
 
@@ -189,7 +209,7 @@ CVector3 Player::Move()
 
 void Player::Render(CRenderContext& renderContext)
 {
-	if (info == isStop) { return; }
+	if (StopFlag) { return; }
 	skinModel.Draw(renderContext, gameCamera->GetViewMatrix(), gameCamera->GetProjectionMatrix());
 }
 
@@ -240,21 +260,11 @@ void Player::Damage(CVector3 ePos)
 	timer = 0.0f;
 }
 
-//コイン獲得
-void Player::CoinGet() 
-{
-	state.score += 100;
-
-	GetCoinSound.Play(false);	//効果音再生
-}
-
-
 //回復アイテム獲得(回復したかを返す)
 bool Player::healing()
 {	//HPが満タンなので回復できない
 	if (state.hp == HP_MAX || info==isDeath) { return false; }
 
 	state.hp++;
-	HealingSound.Play(false);
 	return true;
 }

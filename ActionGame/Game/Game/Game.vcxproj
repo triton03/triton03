@@ -162,6 +162,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Back.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ClearMarker.cpp" />
@@ -169,6 +170,7 @@
     <ClCompile Include="DisplayScore.cpp" />
     <ClCompile Include="DisplayTime.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="heal.cpp" />
     <ClCompile Include="Interface.cpp" />
     <ClCompile Include="Item.cpp" />
@@ -180,6 +182,7 @@
     <ClCompile Include="PlayerHPBar.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Skelton.cpp" />
+    <ClCompile Include="SkeltonFighter.cpp" />
     <ClCompile Include="StartMenu.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -190,6 +193,7 @@
     <ClCompile Include="Switching.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Back.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ClearMarker.h" />
@@ -197,6 +201,7 @@
     <ClInclude Include="DisplayScore.h" />
     <ClInclude Include="DisplayTime.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="GameOver.h" />
     <ClInclude Include="heal.h" />
     <ClInclude Include="Interface.h" />
     <ClInclude Include="Item.h" />
@@ -207,6 +212,7 @@
     <ClInclude Include="PlayerHPBar.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Skelton.h" />
+    <ClInclude Include="SkeltonFighter.h" />
     <ClInclude Include="StartMenu.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Switching.h" />

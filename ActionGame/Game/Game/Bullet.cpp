@@ -6,7 +6,7 @@
 CSkinModelData	b_OriginSkinModelData;	//スキンモデルデータ
 bool			b_flag = false;		//すでに読み込んでいるか
 
-Bullet*				bullet[8];		//弾を格納
+Bullet*				bullet[BulletMAX];		//弾を格納
 
 Bullet::Bullet()
 {
@@ -31,6 +31,11 @@ Bullet::Bullet()
 	position.z += angle.z * 0.1f;
 
 	origin = position;		//最初の位置を記録
+	flag = false;
+
+	SE = NewGO<CSoundSource>(0);
+	SE->Init("Assets/sound/Shot.wav");
+	SE->Play(false);
 }
 
 
@@ -39,6 +44,8 @@ Bullet::~Bullet()
 }
 
 void Bullet::Update() {
+	if (flag) { return; }
+
 	CVector3 diff;
 
 	//移動した距離を計算
@@ -46,8 +53,8 @@ void Bullet::Update() {
 	float lendth = diff.Length();
 
 	//発砲
-	if (flag || lendth > 80.0f || lendth < -80.0f) {
-		DeleteGO(this);
+	if (lendth > 50.0f || g_player->isStop()) {
+		flag = true;
 	}
 
 	//弾移動
@@ -58,12 +65,15 @@ void Bullet::Update() {
 }
 
 void Bullet::Render(CRenderContext& renderContext) {
+	if (flag) { return; }
 	model.Draw(renderContext, gameCamera->GetViewMatrix(), gameCamera->GetProjectionMatrix());
 }
 
 //弾と対象の距離を計算
 float Bullet::Distance(CVector3& objectPos)
 {
+	if (flag) { return 10; }
+
 	CVector3 diff;
 
 	//プレイヤーの座標から敵の座標を減算

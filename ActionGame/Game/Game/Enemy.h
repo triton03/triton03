@@ -47,5 +47,7 @@ protected:
 	//AnimationNo		currentAnimSetNo;	//今のモーション
 	//AnimationNo		anim;				//変更前のモーション
 
+	CSoundSource*		SE;
+
 	Status state;	//敵のステータス
 };

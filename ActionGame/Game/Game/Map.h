@@ -3,6 +3,13 @@
 */
 
 #pragma once
+
+struct SMapInfo {
+	const char*	modelName;
+	CVector3	position;
+	CQuaternion	rotation;
+};
+
 class Map : public IGameObject
 {
 public:
@@ -10,7 +17,6 @@ public:
 	~Map();
 	void Start();
 	void Update();
-
-	CSoundSource*	bgm;		//ƒTƒEƒ“ƒh
+	void Create(SMapInfo* mapLocInfo, int numObject);
 };
 

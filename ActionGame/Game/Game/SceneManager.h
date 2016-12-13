@@ -4,6 +4,7 @@
 #include "Map.h"
 #include "StartMenu.h"
 #include "Switching.h"
+#include "GameOver.h"
 
 #pragma once
 
@@ -21,7 +22,6 @@ public:
 	~SceneManager();
 	void Start();
 	void Update();
-	void StageChange();
 
 	bool isDelete() {
 		return deleteFlag;
@@ -33,9 +33,16 @@ public:
 	}
 
 private:
+	void StageChange();
+	void ContinueMenu();
+	void StageLoading(int);
+	void BGMStart();
+	void BGMEnd();
+
 	bool		flag = false;	//汎用フラグ
 	bool		deleteFlag = false;	//マップチップ消去フラグ
 	bool		switchFlag = false;
+	bool		isBGM = false;
 
 	int				state;
 	float			timer = 0.0f;	//タイマー。
@@ -43,6 +50,8 @@ private:
 	Map*			map;
 	StartMenu*		start;
 	Switching*		switching;
+	GameOver*		gameOver;
+	CSoundSource*	bgm;		//BGM
 };
 
 extern SceneManager* scene;

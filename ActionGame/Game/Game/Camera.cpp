@@ -31,6 +31,7 @@ void Camera::Update()
 
 	//ターゲットをプレイヤーに
 	CVector3 target = g_player->GetPosition();
+	target.y += 1.0;
 	camera.SetTarget(target);
 
 	CVector3 cameraPos;

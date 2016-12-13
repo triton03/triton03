@@ -21,8 +21,12 @@ private:
 	CTexture			backTex;		//HPバーのテクスチャ。
 	CSprite				moji;
 	CTexture			mojiTex;
+	CSprite				moji2;
+	CTexture			mojiTex2;
+
 	CSoundSource*		StartSound;		//サウンド
 	CSoundSource*		StartBGM;
 	bool				flag = false;
+	float				timer = 0.0f;	//タイマー。
 };
 

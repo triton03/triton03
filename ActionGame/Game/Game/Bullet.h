@@ -1,6 +1,7 @@
 /*
 	プレイヤーの攻撃の弾
 */
+#define BulletMAX 8
 
 #pragma once
 class Bullet :public IGameObject
@@ -13,7 +14,13 @@ public:
 	void Update();
 	void Render(CRenderContext& renderContext);
 	float Distance(CVector3& objectPos);
-	bool flag = false;	//消滅フラグ
+
+	void SetFlag(bool F) {
+		flag = F;
+	}
+	bool GetFlag() {
+		return flag;
+	}
 
 private:
 	CVector3		position;		//ポジション
@@ -23,7 +30,11 @@ private:
 	CSkinModelData	modelData;		//モデルデータ
 	CSkinModel		model;			//モデル
 
+	CSoundSource*	SE;
+
 	const float		speed = 1.8f;
+	bool			flag;	//消滅フラグ
+
 };
 
 extern Bullet*				bullet[8];
