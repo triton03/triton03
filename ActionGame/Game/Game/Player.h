@@ -100,6 +100,7 @@ private:
 	CVector3				centralPos;					//プレイヤーの中心の座標
 	CQuaternion				rotation = CQuaternion::Identity;	//回転
 	CVector3				angle = { 0.0f,0.0f,1.0f };			//回転値?
+	CVector3				toLightPos;
 
 	CAnimation			animation;			//アニメーション。
 	AnimationNo			currentAnimSetNo;	//今のモーション

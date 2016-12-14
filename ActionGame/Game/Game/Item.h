@@ -19,7 +19,9 @@ protected:
 	CSkinModel		skinModel;		//スキンモデル
 	CSkinModelData	skinModelData;	//スキンモデルデータ
 
-	CVector3	m_position;	//コインの位置
+	CVector3			position;	//アイテムの位置
+	CQuaternion			rotation;
+
 	bool get_flag = false;	//ゲットしたか
 
 };

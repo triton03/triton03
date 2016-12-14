@@ -26,6 +26,12 @@ void Player::Start() {
 	skinModel.SetShadowCasterFlag(true);
 	skinModel.SetShadowReceiverFlag(true);
 
+	CVector3 lightPos = CVector3(0.0f, 25.5f, 24.5f);
+	ShadowMap().SetLightPosition(lightPos);
+	ShadowMap().SetLightTarget(position);
+	toLightPos.Subtract(lightPos, position);
+	ShadowMap().SetCalcLightViewFunc(CShadowMap::enCalcLightViewFunc_PositionTarget);
+
 	position = FirstPosition;			//ポジションの設定
 	centralPos.Add(position, central);	//モデルの中心を設定
 	characterController.Init(0.5f, 1.0f, position);	//キャラクタコントローラの初期化。
@@ -162,6 +168,12 @@ void Player::Update()
 		animation.PlayAnimation(currentAnimSetNo);
 	}
 	skinModel.Update(position, rotation, CVector3::One);
+
+	//影
+	ShadowMap().SetLightTarget(position);
+	CVector3 lightPos;
+	lightPos.Add(position, toLightPos);
+	ShadowMap().SetLightPosition(lightPos);
 }
 
 //プレイヤーの動き

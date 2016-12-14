@@ -26,9 +26,10 @@ void ClearMarker::Init(CVector3 position, CQuaternion rotation)
 	skinModel.SetShadowReceiverFlag(true);
 
 	//ワールド行列を作成(一回だけ)
-	skinModel.Update(position, rotation, CVector3::One);
+	//skinModel.Update(position, rotation, CVector3::One);
 
-	m_position = position;		//位置を記録
+	this->position = position;		//位置を記録
+	this->rotation = rotation;		//回転を記録
 
 	//サウンドソースのインスタンスを生成して、ゲームオブジェクトマネージャーに登録する。 
 	clearSound = NewGO<CSoundSource>(0); //BGMをロードして初期化。
@@ -38,18 +39,22 @@ void ClearMarker::Init(CVector3 position, CQuaternion rotation)
 void ClearMarker::Update()
 {
 	if (scene->isDelete()) {
+		skinModel.SetShadowCasterFlag(false);
+		skinModel.SetShadowReceiverFlag(false);
 		DeleteGO(this);
 	}
 
 	//なんかクリア条件とか
 	CVector3 pos = g_player->GetPosition();
 
-	if (m_position.x > pos.x && !flag) {
+	if (position.x > pos.x && !flag) {
 		//再生。
 		clearSound->Play(false);
 		flag = true;
 		g_player->SetClear();
 	}
+
+	skinModel.Update(position, rotation, CVector3::One);
 }
 
 void ClearMarker::Render(CRenderContext& renderContext)

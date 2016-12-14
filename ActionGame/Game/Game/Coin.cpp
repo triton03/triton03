@@ -28,5 +28,7 @@ void Coin::Work()
 	SE->Init("Assets/sound/get.wav");
 	SE->Play(false);
 	g_player->SetScore(score);
+	skinModel.SetShadowCasterFlag(false);
+	skinModel.SetShadowReceiverFlag(false);
 	DeleteGO(this);
 }

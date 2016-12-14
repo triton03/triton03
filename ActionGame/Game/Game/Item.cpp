@@ -23,28 +23,29 @@ void Item::Init(CVector3 position, CQuaternion rotation)
 	skinModel.SetShadowCasterFlag(true);
 	skinModel.SetShadowReceiverFlag(true);
 
-	//ワールド行列を作成(一回だけ)
-	skinModel.Update(position, rotation, CVector3::One);
 
-	m_position = position;		//位置を記録
+	this->position = position;		//位置を記録
+	this->rotation = rotation;
 
 }
 
 void Item::Update()
 {
 	if (scene->isDelete()) {
+		skinModel.SetShadowCasterFlag(false);
+		skinModel.SetShadowReceiverFlag(false);
 		DeleteGO(this);
 	}
 
 	//敵とプレイヤーの距離を計算
-	float length = g_player->Distance(m_position);
+	float length = g_player->Distance(position);
 
 	//プレイヤーと接触したら消す
 	if (length <= 2.0f) {
 		//動作
 		Work();
 	}
-
+	skinModel.Update(position, rotation, CVector3::One);
 }
 
 void Item::Render(CRenderContext& renderContext)

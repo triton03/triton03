@@ -19,7 +19,8 @@ private:
 	CSkinModel			skinModel;		//スキンモデル
 	CSkinModelData		skinModelData;	//スキンモデルデータ
 
-	CVector3			m_position;	//マーカーの位置
+	CVector3			position;	//マーカーの位置
+	CQuaternion			rotation;
 	bool				flag = false;	//クリアフラグ
 
 	CSoundSource*		clearSound;

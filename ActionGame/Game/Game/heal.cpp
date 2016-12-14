@@ -27,6 +27,8 @@ void Heal::Work()
 		SE = NewGO<CSoundSource>(0);
 		SE->Init("Assets/sound/cure.wav");
 		SE->Play(false);
+		skinModel.SetShadowCasterFlag(false);
+		skinModel.SetShadowReceiverFlag(false);
 		DeleteGO(this);
 	}
 }
