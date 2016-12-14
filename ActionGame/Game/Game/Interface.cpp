@@ -3,6 +3,7 @@
 #include "PlayerHPBar.h"
 #include "DisplayScore.h"
 #include "DisplayTime.h"
+#include "SceneManager.h"
 
 namespace {
 	const CVector2 InfoBackSize = { 620.0f, 125.0f };	//バックのサイズ
@@ -39,5 +40,7 @@ void Interface::Update()
 }
 void Interface::PostRender(CRenderContext& renderContext)
 {
+	if (scene->isDelete()) { return; }
+
 	m_InfoBack.Draw(renderContext);
 }

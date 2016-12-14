@@ -7,7 +7,6 @@
 #include "heal.h"
 #include "ClearMarker.h"
 #include "Player.h"
-#include "Back.h"
 
 Map::Map()
 {
@@ -29,8 +28,6 @@ void Map::Update()
 
 void Map::Create(SMapInfo* mapLocInfo,int numObject)
 {
-	NewGO<Back>(0);
-
 	//置かれているオブジェクトの数のマップチップを生成
 	for (int i = 0; i < numObject; i++) {
 		if (strcmp("skelton", mapLocInfo[i].modelName) == 0) {

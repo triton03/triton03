@@ -29,40 +29,40 @@ void GameOver::Start()
 	back.SetPosition(backPos);
 
 	//選択の矢印
-	//背景
 	choiceTex.Load("Assets/sprite/choice.png");
 	choice.Init(&choiceTex);
 	choice.SetSize(C_Size);
 	choice.SetPivot({ 0.5f, 0.5f });		//ピボットは中央
 	choice.SetPosition(C_PosUP);
 
+	//サウンド
 	SE = NewGO<CSoundSource>(0);
 	SE->Init("Assets/sound/next.wav");
 
 	isChoice = true;
-	flag = false;
+	flag	= false;
 }
 void GameOver::Update()
 {
 	//何もしない?
+	if (flag) { return; }
+
 	float input = Pad(0).GetLStickYF();
+
+	//上選択(つづける)
 	if (input > 0.0 || Pad(0).IsTrigger(enButtonUp)) {
 		isChoice = true;
 		choice.SetPosition(C_PosUP);
 	}
+	//下選択(おわる)
 	else if (input < 0.0 || Pad(0).IsTrigger(enButtonDown)) {
 		isChoice = false;
 		choice.SetPosition(C_PosDown);
 	}
 
-	if(!flag && Pad(0).IsTrigger(enButtonB)){
-		if (isChoice) {
-			flag = true;
-			SE->Play(false);
-		}
-		else {
-			exit(0);
-		}
+	//決定
+	if(Pad(0).IsTrigger(enButtonB)){
+		flag = true;
 	}
 }
 void GameOver::PostRender(CRenderContext& renderContext)

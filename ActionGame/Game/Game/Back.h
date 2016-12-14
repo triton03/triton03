@@ -11,6 +11,7 @@ public:
 
 	~Back(){}
 
+	void Init(const char* modelName);
 	void Start() override
 	{
 

@@ -2,7 +2,7 @@
 #include "SceneManager.h"
 #include "Player.h"
 #include "Camera.h"
-#include "Interface.h"
+#include "Back.h"
 
 SceneManager* scene;
 
@@ -25,8 +25,8 @@ SceneManager::~SceneManager()
 
 void SceneManager::Start()
 {
-	start = NewGO<StartMenu>(0);
 	state = isStart;
+	StageLoading(isStart);
 }
 
 void SceneManager::Update()
@@ -36,6 +36,11 @@ void SceneManager::Update()
 
 	//スタート画面
 	case isStart:
+		if (switchFlag) {
+			DeleteGO(gameOver);
+			switchFlag = false;
+		}
+
 		//スタートボタンが押された
 		if (start->getFlag()) {
 			if (flag) {
@@ -47,10 +52,10 @@ void SceneManager::Update()
 			}
 			else {
 				//ステージ生成
-				gameCamera = NewGO<Camera>(0);	//カメラを生成
-				map	=NewGO<Map>(0);				//マップ
-				g_player = NewGO<Player>(0);	//プレイヤー
-				NewGO<Interface>(0);
+				gameCamera	= NewGO<Camera>(0);		//カメラを生成
+				map			= NewGO<Map>(0);		//マップ
+				g_player	= NewGO<Player>(0);		//プレイヤー
+				IFace		= NewGO<Interface>(0);	//インターフェース
 
 				StageLoading(isStage1);		//ステージ１のロード
 
@@ -99,8 +104,7 @@ void SceneManager::ContinueMenu()
 
 	if (flag) {
 		switchFlag = false;
-		g_player->SetFullHP();
-		g_player->Reset();
+		g_player->ReStart();
 		DeleteGO(gameOver);
 		BGMStart();
 		flag = false;
@@ -108,9 +112,29 @@ void SceneManager::ContinueMenu()
 	else if (switchFlag) {
 		deleteFlag = true;
 		if (gameOver->isStart()) {
-			deleteFlag = false;
-			StageLoading(state);
-			flag = true;
+			//続ける
+			if (gameOver->GetChoice()) {
+				deleteFlag = false;
+
+				g_player->SetFullHP();
+				g_player->Reset();
+
+				StageLoading(state);	//ステージ読み込み
+
+				flag = true;
+			}
+			//やめる
+			else {
+				StageLoading(isStart);
+
+				DeleteGO(g_player);
+				DeleteGO(gameCamera);
+				DeleteGO(map);
+				DeleteGO(IFace);
+				deleteFlag = false;
+
+				state = isStart;
+			}
 		}
 	}
 	else {
@@ -122,9 +146,9 @@ void SceneManager::ContinueMenu()
 void SceneManager::StageChange()
 {
 	if (flag) {
-		//ローディングが終わったぽいので消す
+		//ローディングが終わったぽい
+		g_player->ReStart();
 
-		g_player->Reset();
 
 		DeleteGO(switching);
 		switchFlag = false;
@@ -137,7 +161,8 @@ void SceneManager::StageChange()
 	else if (deleteFlag) {
 		deleteFlag = false;
 		flag = true;
-
+		
+		g_player->Reset();
 		//ステージローディング
 		StageLoading(isStage2);
 	}
@@ -149,13 +174,20 @@ void SceneManager::StageChange()
 //ステージ読み込み(読み込むステージ番号)
 void SceneManager::StageLoading(int stage)
 {
+	if (stage == isStart) {
+		start = NewGO<StartMenu>(0);
+		return;
+	}
+
 	int numObject;
 	bgm = NewGO<CSoundSource>(0);
+	Back* back = NewGO<Back>(0);
 
 	switch (stage) {
-
 	//ステージ１
 	case isStage1:
+		back->Init("Assets/modelData/Sky.X");
+
 		//マップに配置されているオブジェクト数を計算
 		numObject = sizeof(Stage1) / sizeof(Stage1[0]);
 		map->Create(Stage1, numObject);
@@ -164,6 +196,8 @@ void SceneManager::StageLoading(int stage)
 
 	//ステージ２
 	case isStage2:
+		back->Init("Assets/modelData/Sky2.X");
+
 		//マップに配置されているオブジェクト数を計算
 		numObject = sizeof(Stage2) / sizeof(Stage2[0]);
 		map->Create(Stage2, numObject);

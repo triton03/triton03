@@ -19,13 +19,13 @@
 //coin
 {
 	"coin",
-	CVector3(-30.02f, 5.06f, 1.57f),             //平行移動
+	CVector3(-30.02f, 6.06f, 1.57f),             //平行移動
 	CQuaternion(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
 },
 //coin
 {
 	"coin",
-	CVector3(-10.27f, 1.72f, 1.57f),             //平行移動
+	CVector3(-10.27f, 2.72f, 1.57f),             //平行移動
 	CQuaternion(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
 },
 //box
@@ -73,6 +73,6 @@
 //coin
 {
 	"coin",
-	CVector3(-4.39f, 1.71f, 1.57f),             //平行移動
+	CVector3(-4.39f, 2.71f, 1.57f),             //平行移動
 	CQuaternion(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
 },

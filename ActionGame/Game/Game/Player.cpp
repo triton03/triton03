@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Player.h"
 #include "Camera.h"
+#include "SceneManager.h"
 
 Player* g_player;
 
@@ -43,15 +44,16 @@ void Player::Start() {
 
 	total.score = 0;
 	total.time = 0.0f;
+
+	StopFlag=false;
 }
 
-//ステータスリセット
+//リセット
 void Player::Reset() {
-	info = None;
-
 	position = FirstPosition;		//プレイヤーの座標をセット
 	characterController.SetPosition(position);
 	characterController.SetMoveSpeed(CVector3::Zero);
+	characterController.Execute();
 
 	rotation = CQuaternion::Identity;	//回転
 	angle = { 0.0f,0.0f,1.0f };			//回転値?
@@ -63,17 +65,19 @@ void Player::Reset() {
 
 	currentAnimSetNo = AnimationStand;
 	animation.PlayAnimation(currentAnimSetNo);
+	centralPos.Add(position, central);
 
-	StopFlag = false;
 	bulletNum = 0;
 	for (int i = 0; i < BulletMAX; i++) {
 		bullet[i] = nullptr;
 	}
+
+	skinModel.Update(position, rotation, CVector3::One);
 }
 
 void Player::Update()
 {
-	//プレイヤー停止状態
+	//プレイヤー停止状態か
 	if (StopFlag) { return; }
 
 	//サウンド更新
@@ -85,6 +89,7 @@ void Player::Update()
 	animation.Update(1.0f / 30.0f);
 	anim = currentAnimSetNo;
 
+	//弾管理
 	for (int i = 0; i < BulletMAX; i++) {
 		if (bullet[i] != nullptr && bullet[i]->GetFlag()) {
 			DeleteGO(bullet[i]);
@@ -92,13 +97,50 @@ void Player::Update()
 		}
 	}
 
-	if (info != isDeath && info != isClear) {
-		state.time += GameTime().GetFrameDeltaTime();	//プレイ時間カウント
+	//死んでないときの処理
+	if (info != isDeath) {
+		//プレイ時間加算
+		if (info != isClear) {
+			state.time += GameTime().GetFrameDeltaTime();	//プレイ時間カウント
+		}
+		//落下死
+		if (centralPos.y < -10.0f) {
+			state.hp = 0;
+			info = isDeath;
+			deathSound.Play(false);
+		}
 	}
 
-	if (info == isClear) {
-		//クリアしたときの動き
+	switch (info) {
+	//通常時
+	case None:
+		characterController.SetMoveSpeed(Move());	//移動速度を設定
+		break;
 
+	//ダメージ受けた
+	case isDamage:
+		timer += GameTime().GetFrameDeltaTime();
+
+		//ダメージ受けてから経った時間
+		if (timer > 0.5) {
+			info = None;
+		}
+		break;
+
+	//死んだ
+	case isDeath:
+		currentAnimSetNo = AnimationDeath;
+		timer += GameTime().GetFrameDeltaTime();
+
+		//死んでから経った時間
+		if (timer > 1.3) {
+			StopFlag = true;
+			characterController.SetPosition(FirstPosition);
+		}
+		break;
+
+	//クリアしたときの動き
+	case isClear:
 		timer += GameTime().GetFrameDeltaTime();
 		if (timer >= 1.0f) {
 			rotation = CQuaternion::Identity;	//こっち向き
@@ -109,38 +151,8 @@ void Player::Update()
 			StopFlag=true;	//プレイヤー停止
 		}
 		characterController.SetMoveSpeed({0.0f,-5.0f,0.0f});
+		break;
 	}
-
-	//落下死
-	if (info!=isDeath && centralPos.y < -10.0f) {
-		state.hp = 0;
-		info = isDeath;
-		deathSound.Play(false);
-	}
-
-	if (info == isDeath){
-		currentAnimSetNo = AnimationDeath;
-		timer += GameTime().GetFrameDeltaTime();
-
-		//死んでから経った時間
-		if (timer > 1.3) {
-			StopFlag = true;
-			characterController.SetPosition(FirstPosition);
-		}
-	}
-	else if (info == isDamage) {
-		timer += GameTime().GetFrameDeltaTime();
-
-		//ダメージ受けてから経った時間
-		if (timer > 0.5) {
-			info = None;
-		}
-	}
-
-	if (info == None) {
-		characterController.SetMoveSpeed(Move());	//移動速度を設定
-	}
-
 	characterController.Execute();			//キャラクターコントロール実行
 	position = characterController.GetPosition();	//実行結果の受け取り
 	centralPos.Add(position, central);
@@ -156,7 +168,7 @@ void Player::Update()
 CVector3 Player::Move()
 {
 	float		speed = 10.0f;
-	//ジャンプ時の重力
+	//ジャンプ時の速度補正
 	if (characterController.IsJump()) {
 		speed = speed * 0.8f;
 	}
@@ -201,16 +213,10 @@ CVector3 Player::Move()
 		rotation.SetRotation(CVector3::AxisY, atan2f(angle.x, angle.z));
 	}
 	else {
-		currentAnimSetNo = AnimationStand;
+		currentAnimSetNo = AnimationStand;	//立ちモーション
 	}
 
 	return move;
-}
-
-void Player::Render(CRenderContext& renderContext)
-{
-	if (StopFlag) { return; }
-	skinModel.Draw(renderContext, gameCamera->GetViewMatrix(), gameCamera->GetProjectionMatrix());
 }
 
 //プレイヤーと対象の距離を計算して返す
@@ -251,8 +257,8 @@ void Player::Damage(CVector3 ePos)
 	back.x *= b_speed;
 	back.y *= b_speed;
 
-	characterController.SetMoveSpeed(back);	//移動速度を設定
-	characterController.Execute();			//キャラクターコントロール実行
+	characterController.SetMoveSpeed(back);			//移動速度を設定
+	characterController.Execute();					//キャラクターコントロール実行
 	position = characterController.GetPosition();	//実行結果の受け取り
 	centralPos.Add(position, central);
 	skinModel.Update(position, rotation, CVector3::One);
@@ -262,9 +268,16 @@ void Player::Damage(CVector3 ePos)
 
 //回復アイテム獲得(回復したかを返す)
 bool Player::healing()
-{	//HPが満タンなので回復できない
-	if (state.hp == HP_MAX || info==isDeath) { return false; }
+{	//HPが満タンor通常状態でないので回復できない
+	if (state.hp == HP_MAX || info!=None) { return false; }
 
 	state.hp++;
 	return true;
+}
+
+void Player::Render(CRenderContext& renderContext)
+{
+	if (scene->isDelete()) { return; }
+
+	skinModel.Draw(renderContext, gameCamera->GetViewMatrix(), gameCamera->GetProjectionMatrix());
 }

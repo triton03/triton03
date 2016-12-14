@@ -53,7 +53,7 @@ void StartMenu::Update()
 	timer += GameTime().GetFrameDeltaTime();
 	if (timer > 1.0f) { timer = 0.0f; }
 
-	if (!flag && Pad(0).IsTrigger(enButtonStart)) {
+	if (Pad(0).IsTrigger(enButtonStart) && (!flag)) {
 		DeleteGO(StartBGM);
 		StartSound->Play(false);
 		flag = true;

@@ -69,6 +69,10 @@ public:
 	void SetFullHP() {
 		state.hp = HP_MAX;
 	}
+	void ReStart() {
+		StopFlag = false;
+		info = None;
+	}
 
 private:
 	//プレイヤーのステータス
@@ -111,7 +115,7 @@ private:
 
 	int					bulletNum = 0;
 	bool				isBullet=true;	//弾フラグ
-	bool				StopFlag = false;
+	bool				StopFlag;
 
 	float				timer = 0.0f;	//タイマー。
 

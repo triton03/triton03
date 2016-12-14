@@ -5,6 +5,7 @@
 #include "StartMenu.h"
 #include "Switching.h"
 #include "GameOver.h"
+#include "Interface.h"
 
 #pragma once
 
@@ -28,9 +29,6 @@ public:
 	}
 
 	//ƒtƒ‰ƒOØ‚è‘Ö‚¦ŠÖ”
-	bool FlagSwitching() {
-		flag = !flag;
-	}
 
 private:
 	void StageChange();
@@ -49,6 +47,7 @@ private:
 
 	Map*			map;
 	StartMenu*		start;
+	Interface*		IFace;
 	Switching*		switching;
 	GameOver*		gameOver;
 	CSoundSource*	bgm;		//BGM

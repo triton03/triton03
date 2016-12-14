@@ -6,7 +6,12 @@
 
 Back::Back()
 {
-	skinModelData.LoadModelData("Assets/modelData/Sky.X", NULL);
+
+}
+
+void Back::Init(const char* modelName)
+{
+	skinModelData.LoadModelData(modelName, NULL);
 	skinModel.Init(&skinModelData);
 	skinModel.SetLight(&light);
 
