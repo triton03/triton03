@@ -141,7 +141,6 @@ void Player::Update()
 		//Ž€‚ñ‚Å‚©‚çŒo‚Á‚½ŽžŠÔ
 		if (timer > 1.3) {
 			StopFlag = true;
-			characterController.SetPosition(FirstPosition);
 		}
 		break;
 
