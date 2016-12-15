@@ -1,7 +1,7 @@
 /*
 	ƒvƒŒƒCƒ„[‚ÌUŒ‚‚Ì’e
 */
-#define BulletMAX 8
+#define BulletMAX 5
 
 #pragma once
 class Bullet :public IGameObject
@@ -37,4 +37,4 @@ private:
 
 };
 
-extern Bullet*				bullet[8];
+extern Bullet*				bullet[BulletMAX];

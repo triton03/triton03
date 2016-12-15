@@ -192,7 +192,7 @@ CVector3 Player::Move()
 
 	//Aボタンでジャンプ
 	if (Pad(0).IsTrigger(enButtonA) && !characterController.IsJump()) {
-		move.y = 13.0f;
+		move.y = 14.0f;
 		characterController.Jump();
 		JumpSound.Play(false);	//効果音再生
 	}

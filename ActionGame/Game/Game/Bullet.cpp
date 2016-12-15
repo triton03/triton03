@@ -53,7 +53,7 @@ void Bullet::Update() {
 	float lendth = diff.Length();
 
 	//”­–C
-	if (lendth > 50.0f || g_player->isStop()) {
+	if (lendth > 70.0f || g_player->isStop()) {
 		flag = true;
 	}
 
