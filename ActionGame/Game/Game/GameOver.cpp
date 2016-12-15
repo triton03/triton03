@@ -62,6 +62,7 @@ void GameOver::Update()
 
 	//Œˆ’è
 	if(Pad(0).IsTrigger(enButtonB)){
+		SE->Play(false);
 		flag = true;
 	}
 }
