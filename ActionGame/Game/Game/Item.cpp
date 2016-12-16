@@ -41,7 +41,7 @@ void Item::Update()
 	float length = g_player->Distance(position);
 
 	//ƒvƒŒƒCƒ„[‚ÆÚG‚µ‚½‚çÁ‚·
-	if (length <= 2.0f) {
+	if ((length <= 2.0f) && (g_player->GetInfo()==Player::None)) {
 		//“®ì
 		Work();
 	}

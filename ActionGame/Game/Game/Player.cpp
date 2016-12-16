@@ -15,6 +15,8 @@ Player::Player()
 
 Player::~Player()
 {
+	skinModel.SetShadowCasterFlag(false);
+	skinModel.SetShadowReceiverFlag(false);
 	characterController.RemoveRigidBoby();
 }
 
@@ -279,8 +281,8 @@ void Player::Damage(CVector3 ePos)
 
 //回復アイテム獲得(回復したかを返す)
 bool Player::healing()
-{	//HPが満タンor通常状態でないので回復できない
-	if (state.hp == HP_MAX || info!=None) { return false; }
+{	//HPが満タンなので回復できない
+	if (state.hp == HP_MAX) { return false; }
 
 	state.hp++;
 	return true;
