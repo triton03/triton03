@@ -11,5 +11,8 @@ class Skelton : public Enemy
 public:
 	Skelton();
 	~Skelton();
+	void Move();
+private:
+	float				timer = 0.0f;	//タイマー。
 };
 

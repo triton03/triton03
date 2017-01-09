@@ -10,6 +10,7 @@ public:
 	~DisplayScore();
 	void Start() override;
 	void Update() override;
+	void DeleteNum();
 	void PostRender(CRenderContext& renderContext) override;
 private:
 	CSprite		 m_Str;		//HPƒo[‚Ì”wŒiB

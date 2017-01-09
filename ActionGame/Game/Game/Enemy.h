@@ -41,6 +41,8 @@ protected:
 	CVector3				centralPos;					//プレイヤーの中心の座標
 	const CVector3			central = { 0.0f, 1.8f,0.0f };	//プレイヤーの真ん中の高さ
 
+	CVector3				move = CVector3::Zero;
+
 	CQuaternion				rotation = CQuaternion::Identity;	//回転
 
 	//CAnimation		animation;			//アニメーション。

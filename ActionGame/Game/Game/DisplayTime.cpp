@@ -3,7 +3,7 @@
 #include "Player.h"
 
 namespace {
-	const CVector2 StrSize = { 110.0f, 43.0f };	//文字のサイズ
+	const CVector2 StrSize = { 125.0f, 43.0f };	//文字のサイズ
 	const CVector2 StrPos = { -290.0f, 270.0f };	//文字のポジション
 }
 
@@ -14,6 +14,7 @@ DisplayTime::DisplayTime()
 
 DisplayTime::~DisplayTime()
 {
+
 }
 
 void DisplayTime::Start()
@@ -38,11 +39,11 @@ void DisplayTime::Start()
 	m_colon.SetPivot({ 0.5f, 0.5f });
 
 	//数字のポジション設定
-	num[0]->Init({ -195.0f, StrPos.y });
-	num[1]->Init({ -165.0f, StrPos.y });
+	num[0]->Init(isInfo,{ -195.0f, StrPos.y });
+	num[1]->Init(isInfo,{ -165.0f, StrPos.y });
 	m_colon.SetPosition({ -130.0f, StrPos.y });
-	num[2]->Init({ -100.0f, StrPos.y });
-	num[3]->Init({ -70.0f, StrPos.y });
+	num[2]->Init(isInfo,{ -100.0f, StrPos.y });
+	num[3]->Init(isInfo,{ -70.0f, StrPos.y });
 }
 void DisplayTime::Update()
 {
@@ -63,4 +64,11 @@ void DisplayTime::PostRender(CRenderContext& renderContext)
 {
 	m_Str.Draw(renderContext);
 	m_colon.Draw(renderContext);
+}
+
+void DisplayTime::DeleteNum()
+{
+	for (int i = 0; i < 4; i++) {
+		DeleteGO(num[i]);
+	}
 }

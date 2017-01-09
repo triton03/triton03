@@ -3,9 +3,6 @@
 #include "SceneManager.h"
 
 namespace {
-	const CVector2 backSize = { 1280.0f, 720.f };
-	const CVector2 backPos = { 0.0f, 0.0f };
-
 	const CVector2 C_Size = { 191.0f,127.0f };
 	const CVector2 C_PosUP = { 160.0f,-70.0f };
 	const CVector2 C_PosDown = { 160.0f,-220.0f };

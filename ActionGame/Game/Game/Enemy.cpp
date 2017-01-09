@@ -18,7 +18,6 @@ Enemy::~Enemy()
 
 void Enemy::Init(CVector3 pos)
 {
-	skinModelData.LoadModelData(filePath, NULL);
 
 	skinModel.Init(&skinModelData);
 	skinModel.SetLight(&g_defaultLight);			//デフォルトライトを設定。
@@ -27,6 +26,8 @@ void Enemy::Init(CVector3 pos)
 
 	position = pos;
 	centralPos.Add(position, central);
+
+	rotation.SetRotation(CVector3::AxisY, CMath::DegToRad(90.0f));
 
 	characterController.Init(0.5f, 1.0f, position);	//キャラクタコントローラの初期化。
 
@@ -41,7 +42,7 @@ void Enemy::Update()
 	//anim = currentAnimSetNo;
 
 	//落下死
-	if (position.y < -5.0f) {
+	if (centralPos.y < -5.0f) {
 		state.hp = 0;
 	}
 
@@ -64,7 +65,7 @@ void Enemy::Update()
 	//動き
 	Move();
 
-	//characterController.SetMoveSpeed(move);		//移動速度を設定
+	characterController.SetMoveSpeed(move);		//移動速度を設定
 	characterController.Execute();					//キャラクターコントロール実行
 	position = characterController.GetPosition();	//実行結果の受け取り
 	centralPos.Add(position, central);
@@ -91,7 +92,7 @@ void Enemy::Damage()
 
 		if (bullet[i] == nullptr) { continue; }
 
-		if (bullet[i]->Distance(position) < 3.0) {
+		if (bullet[i]->Distance(centralPos) < 3.0) {
 			state.hp--;
 			bullet[i]->SetFlag(true);
 			DeleteGO(bullet[i]);

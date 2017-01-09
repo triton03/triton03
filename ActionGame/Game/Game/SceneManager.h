@@ -6,6 +6,7 @@
 #include "Switching.h"
 #include "GameOver.h"
 #include "Interface.h"
+#include "TotalResult.h"
 
 #pragma once
 
@@ -13,6 +14,7 @@ enum State {
 	isStart,
 	isStage1,
 	isStage2,
+	isStage3,
 	isEnd,
 };
 
@@ -31,11 +33,12 @@ public:
 	//フラグ切り替え関数
 
 private:
-	void StageChange();
+	void StageChange();		//ステージ変更処理
 	void ContinueMenu();
-	void StageLoading(int);
-	void BGMStart();
-	void BGMEnd();
+	void StageLoading(int);	//ロード関数
+	void BGMStart();		//BGM再生用
+	void BGMEnd();			//BGM停止用
+	void AllDelete();		//全部消す
 
 	bool		flag = false;	//汎用フラグ
 	bool		deleteFlag = false;	//マップチップ消去フラグ
@@ -50,6 +53,7 @@ private:
 	Interface*		IFace;
 	Switching*		switching;
 	GameOver*		gameOver;
+	TotalResult*	result = nullptr;
 	CSoundSource*	bgm;		//BGM
 };
 

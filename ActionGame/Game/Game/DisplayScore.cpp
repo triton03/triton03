@@ -14,6 +14,7 @@ DisplayScore::DisplayScore()
 
 DisplayScore::~DisplayScore()
 {
+
 }
 
 void DisplayScore::Start()
@@ -31,11 +32,11 @@ void DisplayScore::Start()
 		num[i] = NewGO<Number>(0);
 	}
 	//”Žš‚Ìƒ|ƒWƒVƒ‡ƒ“Ý’è
-	num[0]->Init({ -195.0f, StrPos.y });
-	num[1]->Init({ -165.0f, StrPos.y });
-	num[2]->Init({ -135.0f, StrPos.y });
-	num[3]->Init({ -105.0f, StrPos.y });
-	num[4]->Init({ -75.0f, StrPos.y });
+	num[0]->Init(isInfo,{ -195.0f, StrPos.y });
+	num[1]->Init(isInfo,{ -165.0f, StrPos.y });
+	num[2]->Init(isInfo,{ -135.0f, StrPos.y });
+	num[3]->Init(isInfo,{ -105.0f, StrPos.y });
+	num[4]->Init(isInfo,{ -75.0f, StrPos.y });
 }
 void DisplayScore::Update()
 {
@@ -58,4 +59,11 @@ void DisplayScore::Update()
 void DisplayScore::PostRender(CRenderContext& renderContext)
 {
 	m_Str.Draw(renderContext);
+}
+
+void DisplayScore::DeleteNum()
+{
+	for (int i = 0; i < 5; i++) {
+		DeleteGO(num[i]);
+	}
 }

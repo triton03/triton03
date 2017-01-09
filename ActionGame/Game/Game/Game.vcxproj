@@ -170,6 +170,7 @@
     <ClCompile Include="DisplayScore.cpp" />
     <ClCompile Include="DisplayTime.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemyBullet.cpp" />
     <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="heal.cpp" />
     <ClCompile Include="Interface.cpp" />
@@ -183,6 +184,7 @@
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Skelton.cpp" />
     <ClCompile Include="SkeltonFighter.cpp" />
+    <ClCompile Include="SkeltonMage.cpp" />
     <ClCompile Include="StartMenu.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -191,6 +193,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Switching.cpp" />
+    <ClCompile Include="TotalResult.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Back.h" />
@@ -201,6 +204,7 @@
     <ClInclude Include="DisplayScore.h" />
     <ClInclude Include="DisplayTime.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnemyBullet.h" />
     <ClInclude Include="GameOver.h" />
     <ClInclude Include="heal.h" />
     <ClInclude Include="Interface.h" />
@@ -213,9 +217,11 @@
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Skelton.h" />
     <ClInclude Include="SkeltonFighter.h" />
+    <ClInclude Include="SkeltonMage.h" />
     <ClInclude Include="StartMenu.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Switching.h" />
+    <ClInclude Include="TotalResult.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

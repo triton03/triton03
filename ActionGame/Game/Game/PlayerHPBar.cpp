@@ -6,11 +6,13 @@
 #include "PlayerHPBar.h"
 #include "Player.h"
 
+#define Heart_Y 300.0f
+
 namespace {
 	const CVector2 hpHeartSize = { 80.0f, 60.0f };		//ハートのサイズ
-	const CVector2 hpHeartPos1 = { -622.00f, 315.0f };	//1個目のハートの位置
-	const CVector2 hpHeartPos2 = { -540.00f, 315.0f };	//2個目のハートの位置
-	const CVector2 hpHeartPos3 = { -458.00f, 315.0f };	//3個目のハートの位置
+	const CVector2 hpHeartPos1 = { -622.00f, Heart_Y };	//1個目のハートの位置
+	const CVector2 hpHeartPos2 = { -535.00f, Heart_Y };	//2個目のハートの位置
+	const CVector2 hpHeartPos3 = { -448.00f, Heart_Y };	//3個目のハートの位置
 }
 PlayerHPBar::PlayerHPBar()
 {

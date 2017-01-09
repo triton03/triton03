@@ -3,6 +3,7 @@
 #include "MapChip.h"
 #include "Skelton.h"
 #include "SkeltonFighter.h"
+#include "SkeltonMage.h"
 #include "Coin.h"
 #include "heal.h"
 #include "ClearMarker.h"
@@ -36,6 +37,10 @@ void Map::Create(SMapInfo* mapLocInfo,int numObject)
 		}
 		else if (strcmp("skelton_fighter", mapLocInfo[i].modelName) == 0) {
 			SkeltonFighter* skelton = NewGO<SkeltonFighter>(0);
+			skelton->Init(mapLocInfo[i].position);
+		}
+		else if (strcmp("skelton_mage", mapLocInfo[i].modelName) == 0) {
+			SkeltonMage* skelton = NewGO<SkeltonMage>(0);
 			skelton->Init(mapLocInfo[i].position);
 		}
 		else if (strcmp("coin", mapLocInfo[i].modelName) == 0) {

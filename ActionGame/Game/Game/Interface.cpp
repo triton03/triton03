@@ -1,8 +1,5 @@
 #include "stdafx.h"
 #include "Interface.h"
-#include "PlayerHPBar.h"
-#include "DisplayScore.h"
-#include "DisplayTime.h"
 #include "SceneManager.h"
 
 namespace {
@@ -17,6 +14,7 @@ Interface::Interface()
 
 Interface::~Interface()
 {
+
 }
 
 void Interface::Start()
@@ -30,9 +28,9 @@ void Interface::Start()
 
 	m_InfoBack.SetPosition(InfoBackPos);
 
-	NewGO<PlayerHPBar>(0);
-	NewGO<DisplayScore>(0);
-	NewGO<DisplayTime>(0);
+	Bar = NewGO<PlayerHPBar>(0);
+	DScore = NewGO<DisplayScore>(0);
+	DTime = NewGO<DisplayTime>(0);
 }
 void Interface::Update()
 {
@@ -43,4 +41,13 @@ void Interface::PostRender(CRenderContext& renderContext)
 	if (scene->isDelete()) { return; }
 
 	m_InfoBack.Draw(renderContext);
+}
+
+void Interface::DeleteIF()
+{
+	DeleteGO(Bar);
+	DScore->DeleteNum();
+	DeleteGO(DScore);
+	DTime->DeleteNum();
+	DeleteGO(DTime);
 }

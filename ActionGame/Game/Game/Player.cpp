@@ -21,6 +21,12 @@ Player::~Player()
 }
 
 void Player::Start() {
+	//弾のモデルデータをロード(1回だけ)
+	if (!b_flag) {
+		b_OriginSkinModelData.LoadModelData("Assets/modelData/bullet.x", NULL);
+		b_flag = true;
+	}
+
 	//モデルの読み込み
 	skinModelData.LoadModelData("Assets/modelData/sorcerer_A.X", &animation);
 	skinModel.Init(&skinModelData);
@@ -33,6 +39,8 @@ void Player::Start() {
 	ShadowMap().SetLightTarget(position);
 	toLightPos.Subtract(lightPos, position);
 	ShadowMap().SetCalcLightViewFunc(CShadowMap::enCalcLightViewFunc_PositionTarget);
+
+	rotation.SetRotation(CVector3::AxisY, CMath::DegToRad(270.0f));
 
 	position = FirstPosition;			//ポジションの設定
 	centralPos.Add(position, central);	//モデルの中心を設定
@@ -63,8 +71,9 @@ void Player::Reset() {
 	characterController.SetMoveSpeed(CVector3::Zero);
 	characterController.Execute();
 
-	rotation = CQuaternion::Identity;	//回転
-	angle = { 0.0f,0.0f,1.0f };			//回転値?
+	//rotation = CQuaternion::Identity;	//回転
+	rotation.SetRotation(CVector3::AxisY, CMath::DegToRad(270.0f));
+	angle = { -1.0f,0.0f,0.0f };			//回転値?
 
 	state.score = 0;
 	state.time = 0.0f;
@@ -85,8 +94,6 @@ void Player::Reset() {
 
 void Player::Update()
 {
-	//プレイヤー停止状態か
-	if (StopFlag) { return; }
 
 	//サウンド更新
 	JumpSound.Update();
@@ -101,9 +108,12 @@ void Player::Update()
 	for (int i = 0; i < BulletMAX; i++) {
 		if (bullet[i] != nullptr && bullet[i]->GetFlag()) {
 			DeleteGO(bullet[i]);
-			bullet[i] = bullet[i] = nullptr;
+			bullet[i] = nullptr;
 		}
 	}
+
+	//プレイヤー停止状態か
+	if (StopFlag) { return; }
 
 	//死んでないときの処理
 	if (info != isDeath) {
@@ -202,7 +212,7 @@ CVector3 Player::Move()
 		timer += GameTime().GetFrameDeltaTime();
 
 		//前の弾がでてから経った時間
-		if (timer > 0.4) {
+		if (timer > 0.5) {
 			isBullet = true;
 			timer = 0.0f;
 		}
@@ -217,6 +227,16 @@ CVector3 Player::Move()
 	//移動してる
 	if (move.x != 0.0f || move.z != 0.0f)
 	{
+		if ((position.z > Range) && (move.z > 0)) {
+			move.z = 0.0f;
+		}
+		else if ((position.z < -Range) && (move.z < 0)) {
+			move.z = 0.0f;
+		}
+		if ((position.x > 2.5) && (move.x > 0)) {
+			move.x = 0.0f;
+		}
+
 		angle.x = -Pad(0).GetLStickXF();
 		angle.z = -Pad(0).GetLStickYF();
 

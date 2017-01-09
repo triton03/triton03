@@ -26,3 +26,8 @@ using namespace tkEngine;
 extern CLight g_defaultLight;	//デフォルトライト
 
 #endif // _STDAFX_H_
+
+namespace {
+	const CVector2 backSize = { 1280.0f, 720.f };
+	const CVector2 backPos = { 0.0f, 0.0f };
+}

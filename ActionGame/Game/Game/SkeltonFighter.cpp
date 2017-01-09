@@ -7,11 +7,17 @@
 #include "Player.h"
 #include "Camera.h"
 
+CSkinModelData	FighterSkinModelData;	//スキンモデルデータ
+bool			Fighter_flag = false;		//すでに読み込んでいるか
 
 SkeltonFighter::SkeltonFighter()
 {
-	sprintf(filePath, "Assets/modelData/skelton_fighter.X");
-	state.hp = 2;
+	if (!Fighter_flag) {
+		FighterSkinModelData.LoadModelData("Assets/modelData/skelton_fighter.X", NULL);
+		Fighter_flag = true;
+	}
+	skinModelData.CloneModelData(FighterSkinModelData, NULL);
+	state.hp = 3;
 	state.score = 200;
 }
 

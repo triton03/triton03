@@ -2,9 +2,6 @@
 #include "StartMenu.h"
 
 namespace {
-	const CVector2 backSize = { 1280.0f, 720.f };
-	const CVector2 backPos = { 0.0f, 0.0f };
-
 	const CVector2 strSize = { 600.0f, 120.f };
 	const CVector2 strPos = { 250.0f, -200.0f };
 }

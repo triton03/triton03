@@ -37,4 +37,7 @@ private:
 
 };
 
+extern CSkinModelData	b_OriginSkinModelData;	//スキンモデルデータ
+extern bool			b_flag;		//すでに読み込んでいるか
+
 extern Bullet*				bullet[BulletMAX];

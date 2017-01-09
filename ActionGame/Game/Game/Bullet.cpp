@@ -10,11 +10,6 @@ Bullet*				bullet[BulletMAX];		//’e‚ğŠi”[
 
 Bullet::Bullet()
 {
-	//ƒ‚ƒfƒ‹ƒf[ƒ^‚ğƒ[ƒh(1‰ñ‚¾‚¯)
-	if (!b_flag) {
-		b_OriginSkinModelData.LoadModelData("Assets/modelData/bullet.x", NULL);
-		b_flag = true;
-	}
 	//CSkinModel‚ğ‰Šú‰»
 	modelData.CloneModelData(b_OriginSkinModelData, NULL);
 	model.Init(&modelData);
@@ -53,7 +48,7 @@ void Bullet::Update() {
 	float lendth = diff.Length();
 
 	//”­–C
-	if (lendth > 70.0f || g_player->isStop()) {
+	if (lendth > 70.0f) {
 		flag = true;
 	}
 

@@ -2,10 +2,6 @@
 #include "Number.h"
 
 
-namespace {
-	const CVector2 numSize = { 30.0f, 40.0f };	//数字のサイズ
-}
-
 Number::Number()
 {
 
@@ -16,23 +12,27 @@ Number::~Number()
 {
 }
 
-void Number::Start()
+//初期化
+void Number::Init(texState tex, CVector2 numPos, CVector2 numSize)
 {
+	char str[10];
+
+	if (tex == isInfo) {
+		sprintf(str, "number");
+	}
+	else {
+		sprintf(str, "resultNum");
+	}
+
 	for (int i = 0; i < 10; i++) {
 		char filePath[256];
-		sprintf(filePath, "Assets/sprite/number/%d.png", i);
+		sprintf(filePath, "Assets/sprite/%s/%d.png",str, i);
 		m_numberTex[i].Load(filePath);
 
 		m_number[i].Init(&m_numberTex[i]);
 		m_number[i].SetSize(numSize);
 		m_number[i].SetPivot({ 0.5f, 0.5f });
-	}
-}
 
-//ポジションをセットする(表示位置)
-void Number::Init(CVector2 numPos)
-{
-	for (int i = 0; i < 10; i++) {
 		m_number[i].SetPosition(numPos);
 	}
 }

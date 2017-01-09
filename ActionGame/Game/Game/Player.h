@@ -6,6 +6,8 @@
 #include "tkEngine/character/tkCharacterController.h"
 #include "Bullet.h"
 
+#define Range 10
+
 class Player : public IGameObject
 {
 public:
@@ -48,11 +50,19 @@ public:
 	PlayerInfo GetInfo() {		//今の状態を返す
 		return info;
 	}
+
 	float GetTime() {
 		return state.time;
 	}
+	float GetTotalTime() {
+		return total.time;
+	}
+
 	int GetScore() {
 		return state.score;
+	}
+	int GetTotalScore() {
+		return total.score;
 	}
 
 	bool isStop() {
@@ -72,6 +82,9 @@ public:
 	void ReStart() {
 		StopFlag = false;
 		info = None;
+	}
+	void setStop(bool flag){
+		StopFlag = flag;
 	}
 
 private:
@@ -99,7 +112,7 @@ private:
 	CVector3				position ;					//プレイヤーの座標
 	CVector3				centralPos;					//プレイヤーの中心の座標
 	CQuaternion				rotation = CQuaternion::Identity;	//回転
-	CVector3				angle = { 0.0f,0.0f,1.0f };			//回転値?
+	CVector3				angle = { -1.0f,0.0f,0.0f };			//回転値?
 	CVector3				toLightPos;
 
 	CAnimation			animation;			//アニメーション。

@@ -39,6 +39,9 @@
     <Filter Include="Source Files\SceneManager">
       <UniqueIdentifier>{3ad2ac42-d355-48ce-a016-fe2f70de2133}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Enemy\bullet">
+      <UniqueIdentifier>{0ef4e42c-68a5-4ded-9ead-965e6982b983}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -113,6 +116,15 @@
     <ClCompile Include="GameOver.cpp">
       <Filter>Source Files\Display</Filter>
     </ClCompile>
+    <ClCompile Include="TotalResult.cpp">
+      <Filter>Source Files\Display</Filter>
+    </ClCompile>
+    <ClCompile Include="SkeltonMage.cpp">
+      <Filter>Source Files\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyBullet.cpp">
+      <Filter>Source Files\Enemy\bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -183,6 +195,15 @@
     </ClInclude>
     <ClInclude Include="GameOver.h">
       <Filter>Source Files\Display</Filter>
+    </ClInclude>
+    <ClInclude Include="TotalResult.h">
+      <Filter>Source Files\Display</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeltonMage.h">
+      <Filter>Source Files\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyBullet.h">
+      <Filter>Source Files\Enemy\bullet</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

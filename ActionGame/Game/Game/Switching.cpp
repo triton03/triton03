@@ -1,11 +1,6 @@
 #include "stdafx.h"
 #include "Switching.h"
 
-namespace {
-	const CVector2 backSize = { 1280.0f, 720.f };
-	const CVector2 backPos = { 0.0f, 0.0f };
-}
-
 Switching::Switching()
 {
 }
