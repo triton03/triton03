@@ -52,4 +52,8 @@ protected:
 	CSoundSource*		SE;
 
 	Status state;	//敵のステータス
+
+	float length = 0.0f;	//プレイヤーとの距離
+
+	bool workFlag = false; 
 };

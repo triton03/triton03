@@ -8,6 +8,7 @@
 #include "heal.h"
 #include "ClearMarker.h"
 #include "Player.h"
+#include "Boss.h"
 
 Map::Map()
 {
@@ -42,6 +43,10 @@ void Map::Create(SMapInfo* mapLocInfo,int numObject)
 		else if (strcmp("skelton_mage", mapLocInfo[i].modelName) == 0) {
 			SkeltonMage* skelton = NewGO<SkeltonMage>(0);
 			skelton->Init(mapLocInfo[i].position);
+		}
+		else if (strcmp("sorcerer_D", mapLocInfo[i].modelName) == 0) {
+			Boss* boss = NewGO<Boss>(0);
+			boss->Init(mapLocInfo[i].position);
 		}
 		else if (strcmp("coin", mapLocInfo[i].modelName) == 0) {
 			Coin* coin = NewGO<Coin>(0);

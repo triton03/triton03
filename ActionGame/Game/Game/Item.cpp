@@ -23,7 +23,6 @@ void Item::Init(CVector3 position, CQuaternion rotation)
 	skinModel.SetShadowCasterFlag(true);
 	skinModel.SetShadowReceiverFlag(true);
 
-
 	this->position = position;		//位置を記録
 	this->rotation = rotation;
 
@@ -38,7 +37,12 @@ void Item::Update()
 	}
 
 	//敵とプレイヤーの距離を計算
-	float length = g_player->Distance(position);
+	length = g_player->Distance(position);
+
+	if (!workFlag) {
+		if (length > 40.0f) { return; }
+		workFlag = true;
+	}
 
 	//プレイヤーと接触したら消す
 	if ((length <= 2.0f) && (g_player->GetInfo()==Player::None)) {
@@ -50,6 +54,7 @@ void Item::Update()
 
 void Item::Render(CRenderContext& renderContext)
 {
+	if (length > 40.0f) { return; }
 	skinModel.Draw(renderContext, gameCamera->GetViewMatrix(), gameCamera->GetProjectionMatrix());
 }
 

@@ -11,5 +11,10 @@ class SkeltonFighter : public Enemy
 public:
 	SkeltonFighter();
 	~SkeltonFighter();
+	void Move();
+
+private:
+	const float		speed = 5.0f;
+	float			timer = 0.0f;	//タイマー。
 };
 

@@ -26,11 +26,22 @@ public:
 	void Start();
 	void Update();
 
-	bool isDelete() {
+	//削除フラグ取得
+	bool isDelete() 
+	{
 		return deleteFlag;
 	}
+	//ボスフラグ取得
+	bool getBossFlag()
+	{
+		return bossFlag;
+	}
 
-	//フラグ切り替え関数
+	//ボスフラグ設定
+	void setBossFlag(bool flag)
+	{
+		bossFlag = flag;
+	}
 
 private:
 	void StageChange();		//ステージ変更処理
@@ -44,6 +55,8 @@ private:
 	bool		deleteFlag = false;	//マップチップ消去フラグ
 	bool		switchFlag = false;
 	bool		isBGM = false;
+	bool		bossFlag = false;
+	bool		PrevBoss = false;
 
 	int				state;
 	float			timer = 0.0f;	//タイマー。

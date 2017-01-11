@@ -114,6 +114,14 @@ void SceneManager::Update()
 		else {
 			switchFlag = false;
 		}
+		if (bossFlag && !PrevBoss) {
+			BGMEnd();
+			bgm = NewGO<CSoundSource>(0);
+			bgm->Init("Assets/sound/boss.wav");
+			BGMStart();
+			PrevBoss = true;
+		}
+
 		break;
 
 	//エンディング?

@@ -1,5 +1,5 @@
 /*
-	スケルトン
+	スケルトンファイター
 */
 
 #include "stdafx.h"
@@ -17,11 +17,40 @@ SkeltonFighter::SkeltonFighter()
 		Fighter_flag = true;
 	}
 	skinModelData.CloneModelData(FighterSkinModelData, NULL);
-	state.hp = 3;
+	state.hp = 2;
 	state.score = 200;
 }
 
 SkeltonFighter::~SkeltonFighter()
 {
 
+}
+
+void SkeltonFighter::Move()
+{
+	if (length > 12.0f) 
+	{ 
+		move.x = 0.0f;
+		move.z = 0.0f;
+		return; 
+	}
+	CVector3 diff;
+
+	diff.Subtract(g_player->GetPosition(), centralPos);
+	diff.Normalize();	//向きベクトルに変換
+	
+	move.x = diff.x*speed;
+	move.z = diff.z*speed;
+
+	if (timer == 0.0f) {
+		move.y = 12.0f;
+		characterController.Jump();
+	}
+
+	timer += GameTime().GetFrameDeltaTime();
+
+	if (timer > 2.0f) {
+
+		timer = 0.0f;
+	}
 }

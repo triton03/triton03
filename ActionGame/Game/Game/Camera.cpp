@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "Camera.h"
 #include "Player.h"
+#include "SceneManager.h"
+#include "Boss.h"
 
 Camera* gameCamera;
 
@@ -30,12 +32,21 @@ void Camera::Update()
 	if (g_player->GetInfo()== Player::isDeath) { return; }
 
 	//ターゲットをプレイヤーに
-	CVector3 target = g_player->GetPosition();
-	//target.y += 1.0;
-	//target.z = 0.0f;
+	target = g_player->GetPosition();
+	if (scene->getBossFlag()) {
+		target.x = cameraPos.x;
+		if (timer < 3.0) {
+			target.x -= 0.15f;
+			timer += GameTime().GetFrameDeltaTime();
+		}
+	}
+	else {
+		timer = 0.0f;
+	}
+	
+
 	camera.SetTarget(target);
 
-	CVector3 cameraPos;
 	cameraPos.Add(target, playerDist);	//ポジション加算
 	camera.SetPosition(cameraPos);		//ポジションをセット
 	camera.Update();

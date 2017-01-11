@@ -42,6 +42,9 @@
     <Filter Include="Source Files\Enemy\bullet">
       <UniqueIdentifier>{0ef4e42c-68a5-4ded-9ead-965e6982b983}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Enemy\mob">
+      <UniqueIdentifier>{5fe18a75-0ca5-421e-8e6b-7ae0464c369a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -70,9 +73,6 @@
     </ClCompile>
     <ClCompile Include="StartMenu.cpp">
       <Filter>Source Files\Display</Filter>
-    </ClCompile>
-    <ClCompile Include="Skelton.cpp">
-      <Filter>Source Files\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
       <Filter>Source Files\Enemy</Filter>
@@ -107,9 +107,6 @@
     <ClCompile Include="Item.cpp">
       <Filter>Source Files\Item</Filter>
     </ClCompile>
-    <ClCompile Include="SkeltonFighter.cpp">
-      <Filter>Source Files\Enemy</Filter>
-    </ClCompile>
     <ClCompile Include="Back.cpp">
       <Filter>Source Files\Map</Filter>
     </ClCompile>
@@ -119,19 +116,25 @@
     <ClCompile Include="TotalResult.cpp">
       <Filter>Source Files\Display</Filter>
     </ClCompile>
-    <ClCompile Include="SkeltonMage.cpp">
-      <Filter>Source Files\Enemy</Filter>
-    </ClCompile>
     <ClCompile Include="EnemyBullet.cpp">
       <Filter>Source Files\Enemy\bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Skelton.cpp">
+      <Filter>Source Files\Enemy\mob</Filter>
+    </ClCompile>
+    <ClCompile Include="SkeltonFighter.cpp">
+      <Filter>Source Files\Enemy\mob</Filter>
+    </ClCompile>
+    <ClCompile Include="SkeltonMage.cpp">
+      <Filter>Source Files\Enemy\mob</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss.cpp">
+      <Filter>Source Files\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
       <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Source Files\Player</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>Source Files\Camera</Filter>
@@ -150,9 +153,6 @@
     </ClInclude>
     <ClInclude Include="StartMenu.h">
       <Filter>Source Files\Display</Filter>
-    </ClInclude>
-    <ClInclude Include="Skelton.h">
-      <Filter>Source Files\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="Enemy.h">
       <Filter>Source Files\Enemy</Filter>
@@ -187,9 +187,6 @@
     <ClInclude Include="Item.h">
       <Filter>Source Files\Item</Filter>
     </ClInclude>
-    <ClInclude Include="SkeltonFighter.h">
-      <Filter>Source Files\Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="Back.h">
       <Filter>Source Files\Map</Filter>
     </ClInclude>
@@ -199,11 +196,23 @@
     <ClInclude Include="TotalResult.h">
       <Filter>Source Files\Display</Filter>
     </ClInclude>
-    <ClInclude Include="SkeltonMage.h">
-      <Filter>Source Files\Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="EnemyBullet.h">
       <Filter>Source Files\Enemy\bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Skelton.h">
+      <Filter>Source Files\Enemy\mob</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeltonFighter.h">
+      <Filter>Source Files\Enemy\mob</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeltonMage.h">
+      <Filter>Source Files\Enemy\mob</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss.h">
+      <Filter>Source Files\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Source Files\SceneManager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

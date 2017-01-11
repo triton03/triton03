@@ -61,7 +61,7 @@ void Player::Start() {
 	total.score = 0;
 	total.time = 0.0f;
 
-	StopFlag=false;
+	StopFlag = false;
 }
 
 //リセット
@@ -94,6 +94,7 @@ void Player::Reset() {
 
 void Player::Update()
 {
+	if (scene->isDelete()) { return; }
 
 	//サウンド更新
 	JumpSound.Update();
@@ -167,7 +168,7 @@ void Player::Update()
 			total.time += state.time;
 			StopFlag=true;	//プレイヤー停止
 		}
-		characterController.SetMoveSpeed({0.0f,-5.0f,0.0f});
+		characterController.SetMoveSpeed({0.0f,-10.0f,0.0f});
 		break;
 	}
 	characterController.Execute();			//キャラクターコントロール実行
@@ -227,12 +228,17 @@ CVector3 Player::Move()
 	//移動してる
 	if (move.x != 0.0f || move.z != 0.0f)
 	{
+		/*
+		//道?の横からの落下防止(いらないかもしれない)
 		if ((position.z > Range) && (move.z > 0)) {
 			move.z = 0.0f;
 		}
 		else if ((position.z < -Range) && (move.z < 0)) {
 			move.z = 0.0f;
 		}
+		*/
+
+		//スタート位置より後ろに移動できないようにしてみる(いらないかもしれない)
 		if ((position.x > 2.5) && (move.x > 0)) {
 			move.x = 0.0f;
 		}

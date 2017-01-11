@@ -28,8 +28,7 @@ Skelton::~Skelton()
 
 void Skelton::Move()
 {
-	move = characterController.GetMoveSpeed();
-	if (timer > 1.8f) {
+	if (timer > 1.6f) {
 		move.y = 12.0f;
 		characterController.Jump();
 		timer = 0.0f;

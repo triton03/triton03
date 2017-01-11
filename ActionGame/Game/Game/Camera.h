@@ -25,6 +25,9 @@ public:
 private:
 	CCamera		camera;			//ƒJƒƒ‰
 	CVector3	playerDist;		//ƒJƒƒ‰‚ÌˆÊ’u
+	CVector3	cameraPos;
+	CVector3	target;
+	float		timer;
 };
 
 extern Camera* gameCamera;

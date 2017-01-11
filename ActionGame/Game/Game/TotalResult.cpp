@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "TotalResult.h"
 #include "Player.h"
+#include "SceneManager.h"
 
 
 TotalResult::TotalResult()

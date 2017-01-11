@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "SkeltonMage.h"
-#include "EnemyBullet.h"
 
 CSkinModelData	MageSkinModelData;	//スキンモデルデータ
 bool			Mage_flag = false;		//すでに読み込んでいるか

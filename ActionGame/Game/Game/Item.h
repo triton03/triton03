@@ -23,6 +23,7 @@ protected:
 	CQuaternion			rotation;
 
 	bool get_flag = false;	//ゲットしたか
-
+	bool workFlag = false;
+	float length=0.0f;		//プレイヤーとの距離
 };
 

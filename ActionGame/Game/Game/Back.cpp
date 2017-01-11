@@ -25,7 +25,7 @@ void Back::Update()
 		DeleteGO(this);
 	}
 
-	if (g_player->GetInfo() == Player::isDeath) { return; }
+	if ((g_player->GetInfo() == Player::isDeath) || scene->getBossFlag()) { return; }
 	CVector3 pos;
 	pos.x = g_player->GetPosition().x;
 	pos.y = 15.0f;

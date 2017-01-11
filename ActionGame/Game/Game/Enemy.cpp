@@ -37,16 +37,28 @@ void Enemy::Init(CVector3 pos)
 
 void Enemy::Update()
 {
+	//HPが0になった
+	if (scene->isDelete() || state.hp <= 0) {
+		g_player->SetScore(state.score);
+		skinModel.SetShadowCasterFlag(false);
+		skinModel.SetShadowReceiverFlag(false);
+		DeleteGO(this);
+	}
+
+	length = g_player->Distance(centralPos);
+	if (!workFlag) {
+		if (length > 40.0f) { return; }
+		workFlag = true;
+	}
+
 	//アニメーション更新
 	//animation.Update(1.0f / 30.0f);
 	//anim = currentAnimSetNo;
 
 	//落下死
-	if (centralPos.y < -5.0f) {
+	if (centralPos.y < -10.0f) {
 		state.hp = 0;
 	}
-
-	float length = g_player->Distance(centralPos);
 
 	if (length <= 3.0f) {
 		g_player->Damage(centralPos);
@@ -54,13 +66,7 @@ void Enemy::Update()
 
 	this->Damage();
 
-	//HPが0になった
-	if (scene->isDelete()|| state.hp <= 0) {
-		g_player->SetScore(state.score);
-		skinModel.SetShadowCasterFlag(false);
-		skinModel.SetShadowReceiverFlag(false);
-		DeleteGO(this);
-	}
+	move = characterController.GetMoveSpeed();
 
 	//動き
 	Move();
@@ -71,11 +77,6 @@ void Enemy::Update()
 	centralPos.Add(position, central);
 
 	skinModel.Update(position, rotation, CVector3::One);
-}
-
-void Enemy::Render(CRenderContext& renderContext)
-{
-	skinModel.Draw(renderContext, gameCamera->GetViewMatrix(), gameCamera->GetProjectionMatrix());
 }
 
 //動き
@@ -108,4 +109,10 @@ void Enemy::Damage()
 			SE->Play(false);
 		}
 	}
+}
+
+void Enemy::Render(CRenderContext& renderContext)
+{
+	if (length > 40.0f) { return; }
+	skinModel.Draw(renderContext, gameCamera->GetViewMatrix(), gameCamera->GetProjectionMatrix());
 }
