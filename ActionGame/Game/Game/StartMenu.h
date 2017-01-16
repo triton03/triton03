@@ -24,7 +24,7 @@ private:
 	CSprite				moji2;
 	CTexture			mojiTex2;
 
-	CSoundSource*		StartSound;		//サウンド
+	CSoundSource*		sound;		//サウンド
 	CSoundSource*		StartBGM;
 	bool				flag = false;
 	float				timer = 0.0f;	//タイマー。

@@ -18,6 +18,10 @@ public:
 		return flag;
 	}
 
+	void setAngle(CVector3 ang) {
+		angle = ang;
+	}
+
 private:
 	CVector3		position;		//ポジション
 
@@ -25,7 +29,7 @@ private:
 	CSkinModelData	modelData;		//モデルデータ
 	CSkinModel		model;			//モデル
 
-	CSoundSource*	SE;
+	CVector3		angle;
 
 	const float		speed = 1.8f;
 	bool			flag;	//消滅フラグ

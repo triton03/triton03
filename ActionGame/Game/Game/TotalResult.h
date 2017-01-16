@@ -26,8 +26,8 @@ private:
 	CSprite				back;			//背景
 	CTexture			backTex;		//背景テクスチャ。
 
-	CSoundSource*		Sound;		//サウンド
 	CSoundSource*		BGM;
+
 	bool				flag = false;
 
 	CSprite		m_colon;		//コロン

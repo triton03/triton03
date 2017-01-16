@@ -5,6 +5,8 @@
 #ifndef _STDAFX_H_
 #define _STDAFX_H_
 
+#define Limit 30.0f //敵とかアイテムが処理を始める距離
+
 
 #include <windows.h>
 #include "tkEngine/tkEnginePreCompile.h"

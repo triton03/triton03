@@ -22,7 +22,5 @@ private:
 	CVector3			position;	//マーカーの位置
 	CQuaternion			rotation;
 	bool				flag = false;	//クリアフラグ
-
-	CSoundSource*		clearSound;
 };
 

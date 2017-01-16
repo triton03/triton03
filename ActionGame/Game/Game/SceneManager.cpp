@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "Camera.h"
 #include "Back.h"
+#include "ShowSprite.h"
 
 SceneManager* scene;
 
@@ -15,9 +16,9 @@ SMapInfo Stage2[] = {
 #include "locationInfo2.h"	//ステージ２
 };
 
-SMapInfo Stage3[] = {
-#include "locationInfo3.h"	//ステージ3
-};
+//SMapInfo Stage3[] = {
+//#include "locationInfo3.h"	//ステージ3
+//};
 
 SceneManager::SceneManager()
 {
@@ -59,6 +60,8 @@ void SceneManager::Update()
 				BGMStart();
 				state = isStage1;
 				flag = false;
+				ShowSprite* ss = NewGO<ShowSprite>(0);
+				ss->Init(start2);
 			}
 			else {
 				//ステージ生成
@@ -67,7 +70,7 @@ void SceneManager::Update()
 				g_player	= NewGO<Player>(0);		//プレイヤー
 				IFace		= NewGO<Interface>(0);	//インターフェース
 
-				StageLoading(isStage1);		//ステージ１のロード
+				StageLoading(isStage2);		//ステージ１のロード
 
 				flag = true;
 			}
@@ -77,10 +80,11 @@ void SceneManager::Update()
 	//ステージ１
 	case isStage1:
 	case isStage2:
-	case isStage3:
+	//case isStage3:
 		//死んだ
 		if (g_player->GetInfo() == Player::isDeath) {
 			ContinueMenu();
+			PrevBoss = false;
 		}
 		//クリアした
 		else if (g_player->GetInfo() == Player::isClear) {
@@ -88,11 +92,11 @@ void SceneManager::Update()
 				BGMEnd();
 			}
 			if (switchFlag) {
-				//ステージ3以外
-				if (state != isStage3) {
+				//ステージ2以外
+				if (state != isStage2) {
 					StageChange();
 				}
-				//ステージ3のとき
+				//ステージ2のとき
 				else {
 					deleteFlag = true;
 					state = isEnd;
@@ -100,11 +104,11 @@ void SceneManager::Update()
 			}
 			//プレイヤーが停止状態になった
 			else if (g_player->isStop()) {
-				//ステージ3以外
-				if (state != isStage3) {
+				//ステージ2以外
+				if (state != isStage2) {
 					switching = NewGO<Switching>(0);
 				}
-				//ステージ3のとき
+				//ステージ2のとき
 				else {
 					StageLoading(isEnd);
 				}
@@ -114,12 +118,22 @@ void SceneManager::Update()
 		else {
 			switchFlag = false;
 		}
+		//ボス戦
 		if (bossFlag && !PrevBoss) {
 			BGMEnd();
 			bgm = NewGO<CSoundSource>(0);
-			bgm->Init("Assets/sound/boss.wav");
+			bgm->InitStreaming("Assets/sound/boss.wav");
 			BGMStart();
 			PrevBoss = true;
+			NewGO<BossHP>(0);
+		}
+		//ボス戦が終わった
+		else if (!bossFlag && PrevBoss) {
+			BGMEnd();
+			bgm = NewGO<CSoundSource>(0);
+			bgm->InitStreaming("Assets/sound/bgm2.wav");
+			BGMStart();
+			PrevBoss = false;
 		}
 
 		break;
@@ -201,6 +215,9 @@ void SceneManager::StageChange()
 
 		state++;
 		flag = false;
+
+		ShowSprite* ss = NewGO<ShowSprite>(0);
+		ss->Init(start2);
 	}
 	else if (deleteFlag) {
 		deleteFlag = false;
@@ -254,6 +271,7 @@ void SceneManager::StageLoading(int stage)
 		bgm->InitStreaming("Assets/sound/bgm2.wav");
 		break;
 
+	/*
 	//ステージ３
 	case isStage3:
 		back->Init("Assets/modelData/Sky2.X");
@@ -263,6 +281,7 @@ void SceneManager::StageLoading(int stage)
 		map->Create(Stage3, numObject);
 		bgm->InitStreaming("Assets/sound/bgm3.wav");
 		break;
+	*/
 	}
 
 }

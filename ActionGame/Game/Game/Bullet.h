@@ -30,8 +30,6 @@ private:
 	CSkinModelData	modelData;		//モデルデータ
 	CSkinModel		model;			//モデル
 
-	CSoundSource*	SE;
-
 	const float		speed = 1.8f;
 	bool			flag;	//消滅フラグ
 

@@ -38,9 +38,7 @@ void StartMenu::Start()
 	moji2.SetPivot({ 0.5f, 0.5f });		//ピボットは中央
 	moji2.SetPosition(strPos);
 
-	StartSound = NewGO<CSoundSource>(0);
 	StartBGM = NewGO<CSoundSource>(0);
-	StartSound->Init("Assets/sound/start.wav");
 	StartBGM->InitStreaming("Assets/sound/title.wav");
 
 	StartBGM->Play(true);
@@ -52,7 +50,9 @@ void StartMenu::Update()
 
 	if (Pad(0).IsTrigger(enButtonStart) && (!flag)) {
 		DeleteGO(StartBGM);
-		StartSound->Play(false);
+		CSoundSource*	sound = NewGO<CSoundSource>(0);
+		sound->Init("Assets/sound/start.wav");
+		sound->Play(false);
 		flag = true;
 	}
 }

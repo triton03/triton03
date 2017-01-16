@@ -84,9 +84,7 @@ void TotalResult::Start()
 	scoreNum[4]->NumSet(score);
 
 /*ƒTƒEƒ“ƒh€”õ*/
-	Sound = NewGO<CSoundSource>(0);
 	BGM = NewGO<CSoundSource>(0);
-	Sound->Init("Assets/sound/next.wav");
 	BGM->InitStreaming("Assets/sound/result.wav");
 
 	BGM->Play(true);
@@ -95,6 +93,8 @@ void TotalResult::Update()
 {
 	if (Pad(0).IsTrigger(enButtonStart) && (!flag)) {
 		DeleteGO(BGM);
+		CSoundSource* Sound = NewGO<CSoundSource>(0);
+		Sound->Init("Assets/sound/next.wav");
 		Sound->Play(false);
 		flag = true;
 	}

@@ -24,8 +24,6 @@ private:
 	CSprite				choice;			//やじるし
 	CTexture			choiceTex;		//やじるしのテクスチャ
 
-	CSoundSource*		SE;
-
 	bool				flag;
 	bool				isChoice;
 };

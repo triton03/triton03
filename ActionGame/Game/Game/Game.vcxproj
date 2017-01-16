@@ -164,6 +164,7 @@
   <ItemGroup>
     <ClCompile Include="Back.cpp" />
     <ClCompile Include="Boss.cpp" />
+    <ClCompile Include="BossHP.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ClearMarker.cpp" />
@@ -183,6 +184,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerHPBar.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="ShowSprite.cpp" />
     <ClCompile Include="Skelton.cpp" />
     <ClCompile Include="SkeltonFighter.cpp" />
     <ClCompile Include="SkeltonMage.cpp" />
@@ -199,6 +201,7 @@
   <ItemGroup>
     <ClInclude Include="Back.h" />
     <ClInclude Include="Boss.h" />
+    <ClInclude Include="BossHP.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ClearMarker.h" />
@@ -217,6 +220,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerHPBar.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="ShowSprite.h" />
     <ClInclude Include="Skelton.h" />
     <ClInclude Include="SkeltonFighter.h" />
     <ClInclude Include="SkeltonMage.h" />

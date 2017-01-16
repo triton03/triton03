@@ -3,6 +3,7 @@
 #include "Camera.h"
 #include "Player.h"
 #include "SceneManager.h"
+#include "ShowSprite.h"
 
 
 ClearMarker::ClearMarker()
@@ -31,9 +32,6 @@ void ClearMarker::Init(CVector3 position, CQuaternion rotation)
 	this->position = position;		//位置を記録
 	this->rotation = rotation;		//回転を記録
 
-	//サウンドソースのインスタンスを生成して、ゲームオブジェクトマネージャーに登録する。 
-	clearSound = NewGO<CSoundSource>(0); //BGMをロードして初期化。
-	clearSound->Init("Assets/sound/clear.wav");
 }
 
 void ClearMarker::Update()
@@ -44,14 +42,28 @@ void ClearMarker::Update()
 		DeleteGO(this);
 	}
 
+	if (scene->getBossFlag() || (g_player->GetInfo()!=Player::None)) { return; }
+
 	//なんかクリア条件とか
 	CVector3 pos = g_player->GetPosition();
 
 	if (position.x > pos.x && !flag) {
 		//再生。
+		CSoundSource* clearSound = NewGO<CSoundSource>(0);
+		clearSound->Init("Assets/sound/clear.wav");
 		clearSound->Play(false);
 		flag = true;
 		g_player->SetClear();
+		int stage = scene->getStage();
+
+		ShowSprite* ss = NewGO<ShowSprite>(0);
+
+		if (scene->getStage()==isStage1) {
+			ss->Init(clear1);
+		}
+		else {
+			ss->Init(clear2);
+		}
 	}
 
 	skinModel.Update(position, rotation, CVector3::One);

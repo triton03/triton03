@@ -4,7 +4,7 @@
 
 namespace {
 	const CVector2 StrSize = { 125.0f, 43.0f };	//文字のサイズ
-	const CVector2 StrPos = { -290.0f, 324.0f };	//文字のポジション
+	const CVector2 StrPos = { -280.0f, 324.0f };	//文字のポジション
 }
 
 DisplayScore::DisplayScore()

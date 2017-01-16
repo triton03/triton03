@@ -24,7 +24,7 @@ Coin::~Coin()
 
 void Coin::Work()
 {
-	SE = NewGO<CSoundSource>(0);
+	CSoundSource* SE = NewGO<CSoundSource>(0);
 	SE->Init("Assets/sound/get.wav");
 	SE->Play(false);
 	g_player->SetScore(score);

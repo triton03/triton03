@@ -45,8 +45,8 @@ void Map::Create(SMapInfo* mapLocInfo,int numObject)
 			skelton->Init(mapLocInfo[i].position);
 		}
 		else if (strcmp("sorcerer_D", mapLocInfo[i].modelName) == 0) {
-			Boss* boss = NewGO<Boss>(0);
-			boss->Init(mapLocInfo[i].position);
+			g_boss = NewGO<Boss>(0);
+			g_boss->Init(mapLocInfo[i].position);
 		}
 		else if (strcmp("coin", mapLocInfo[i].modelName) == 0) {
 			Coin* coin = NewGO<Coin>(0);

@@ -119,10 +119,6 @@ private:
 	AnimationNo			currentAnimSetNo;	//今のモーション
 	AnimationNo			anim;				//変更前のモーション
 
-	CSoundSource		JumpSound;		//ジャンプボイス
-	CSoundSource		damageSound;	//ダメージボイス
-	CSoundSource		deathSound;		//やられボイス
-
 	Status				state;			//プレイヤーのステータス
 	Status				total;			//合計
 	PlayerInfo			info = None;	//プレイヤーの状態

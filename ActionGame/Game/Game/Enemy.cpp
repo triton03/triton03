@@ -47,7 +47,7 @@ void Enemy::Update()
 
 	length = g_player->Distance(centralPos);
 	if (!workFlag) {
-		if (length > 40.0f) { return; }
+		if (length > Limit) { return; }
 		workFlag = true;
 	}
 
@@ -88,6 +88,7 @@ void Enemy::Move()
 void Enemy::Damage()
 {
 	if (g_player->GetInfo() == Player::isClear) { return; }
+	if (length > (Limit-4.5f)) { return; }
 
 	for (int i = 0; i < BulletMAX; i++) {
 
@@ -99,7 +100,7 @@ void Enemy::Damage()
 			DeleteGO(bullet[i]);
 			bullet[i] = nullptr;
 
-			SE = NewGO<CSoundSource>(0);
+			CSoundSource* SE = NewGO<CSoundSource>(0);
 			if (state.hp > 0) {
 				SE->Init("Assets/sound/hit.wav");
 			}
@@ -113,6 +114,6 @@ void Enemy::Damage()
 
 void Enemy::Render(CRenderContext& renderContext)
 {
-	if (length > 40.0f) { return; }
+	if (length > Limit) { return; }
 	skinModel.Draw(renderContext, gameCamera->GetViewMatrix(), gameCamera->GetProjectionMatrix());
 }

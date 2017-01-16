@@ -24,7 +24,7 @@ Heal::~Heal()
 void Heal::Work()
 {
 	if (g_player->healing()) {
-		SE = NewGO<CSoundSource>(0);
+		CSoundSource* SE = NewGO<CSoundSource>(0);
 		SE->Init("Assets/sound/cure.wav");
 		SE->Play(false);
 		skinModel.SetShadowCasterFlag(false);

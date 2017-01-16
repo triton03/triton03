@@ -7,14 +7,15 @@
 #include "GameOver.h"
 #include "Interface.h"
 #include "TotalResult.h"
+#include "BossHP.h"
 
 #pragma once
 
-enum State {
+enum isStage {
 	isStart,
 	isStage1,
 	isStage2,
-	isStage3,
+	//isStage3,
 	isEnd,
 };
 
@@ -41,6 +42,11 @@ public:
 	void setBossFlag(bool flag)
 	{
 		bossFlag = flag;
+	}
+
+	int getStage()
+	{
+		return state;
 	}
 
 private:

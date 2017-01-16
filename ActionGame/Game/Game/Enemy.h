@@ -11,19 +11,22 @@ public:
 	Enemy();
 	~Enemy();
 	void Init(CVector3 FirstPosition);
-	void Reset();
 	void Update();
 	void Render(CRenderContext& renderContext);
 	virtual void Move();			//動き
-	void Damage();
+	virtual void Damage();
 
 protected:
 	//モーション
 	enum AnimationNo {
-		AnimationStand,		//立ち
+		AnimationDeath,		//死
 		AnimationRun,		//走り
-		AnimationJump,		//ジャンプ
+		AnimationStand,		//立ち
 	};
+
+	CAnimation			animation;			//アニメーション。
+	AnimationNo			currentAnimSetNo;	//今のモーション
+	AnimationNo			anim;				//変更前のモーション
 
 	char filePath[256];	//ファイルパス
 
@@ -48,8 +51,6 @@ protected:
 	//CAnimation		animation;			//アニメーション。
 	//AnimationNo		currentAnimSetNo;	//今のモーション
 	//AnimationNo		anim;				//変更前のモーション
-
-	CSoundSource*		SE;
 
 	Status state;	//敵のステータス
 

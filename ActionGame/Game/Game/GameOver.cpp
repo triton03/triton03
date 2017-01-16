@@ -32,10 +32,6 @@ void GameOver::Start()
 	choice.SetPivot({ 0.5f, 0.5f });		//ピボットは中央
 	choice.SetPosition(C_PosUP);
 
-	//サウンド
-	SE = NewGO<CSoundSource>(0);
-	SE->Init("Assets/sound/next.wav");
-
 	isChoice = true;
 	flag	= false;
 }
@@ -59,6 +55,9 @@ void GameOver::Update()
 
 	//決定
 	if(Pad(0).IsTrigger(enButtonB)){
+		//サウンド
+		CSoundSource* SE = NewGO<CSoundSource>(0);
+		SE->Init("Assets/sound/next.wav");
 		SE->Play(false);
 		flag = true;
 	}

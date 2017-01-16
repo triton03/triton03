@@ -131,6 +131,12 @@
     <ClCompile Include="Boss.cpp">
       <Filter>Source Files\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="ShowSprite.cpp">
+      <Filter>Source Files\Display</Filter>
+    </ClCompile>
+    <ClCompile Include="BossHP.cpp">
+      <Filter>Source Files\Info</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -212,7 +218,13 @@
       <Filter>Source Files\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Source Files\SceneManager</Filter>
+      <Filter>Source Files\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="ShowSprite.h">
+      <Filter>Source Files\Display</Filter>
+    </ClInclude>
+    <ClInclude Include="BossHP.h">
+      <Filter>Source Files\Info</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

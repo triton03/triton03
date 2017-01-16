@@ -47,13 +47,9 @@ void Player::Start() {
 	characterController.Init(0.5f, 1.0f, position);	//キャラクタコントローラの初期化。
 
 	animation.SetAnimationLoopFlag(AnimationDeath, false);
-	animation.PlayAnimation(AnimationStand);
+	animation.PlayAnimation(AnimationStand,0.3f);
 
-//効果音セット
-	JumpSound.Init("Assets/sound/Jump.wav");
-	damageSound.Init("Assets/sound/damage.wav");
-	deathSound.Init("Assets/sound/death.wav");
-
+	//ステータスセット
 	state.hp = HP_MAX;
 	state.score = 0;
 	state.time = 0.0f;
@@ -96,11 +92,6 @@ void Player::Update()
 {
 	if (scene->isDelete()) { return; }
 
-	//サウンド更新
-	JumpSound.Update();
-	damageSound.Update();
-	deathSound.Update();
-
 	//アニメーション更新
 	animation.Update(1.0f / 30.0f);
 	anim = currentAnimSetNo;
@@ -126,7 +117,9 @@ void Player::Update()
 		if (centralPos.y < -10.0f) {
 			state.hp = 0;
 			info = isDeath;
-			deathSound.Play(false);
+			CSoundSource*	sound = NewGO<CSoundSource>(0);
+			sound->Init("Assets/sound/death.wav");
+			sound->Play(false);	//効果音再生
 		}
 	}
 
@@ -177,7 +170,7 @@ void Player::Update()
 
 //モーションが変わってたら変更する
 	if (currentAnimSetNo != anim) {
-		animation.PlayAnimation(currentAnimSetNo);
+		animation.PlayAnimation(currentAnimSetNo,0.3f);
 	}
 	skinModel.Update(position, rotation, CVector3::One);
 
@@ -191,7 +184,7 @@ void Player::Update()
 //プレイヤーの動き
 CVector3 Player::Move()
 {
-	float		speed = 10.0f;
+	float		speed = 11.0f;
 	//ジャンプ時の速度補正
 	if (characterController.IsJump()) {
 		speed = speed * 0.8f;
@@ -206,14 +199,16 @@ CVector3 Player::Move()
 	if (Pad(0).IsTrigger(enButtonA) && !characterController.IsJump()) {
 		move.y = 14.0f;
 		characterController.Jump();
-		JumpSound.Play(false);	//効果音再生
+		CSoundSource*	sound = NewGO<CSoundSource>(0);
+		sound->Init("Assets/sound/Jump.wav");
+		sound->Play(false);	//効果音再生
 	}
 
 	if (!isBullet) {
 		timer += GameTime().GetFrameDeltaTime();
 
 		//前の弾がでてから経った時間
-		if (timer > 0.5) {
+		if (timer > 0.7) {
 			isBullet = true;
 			timer = 0.0f;
 		}
@@ -276,12 +271,16 @@ void Player::Damage(CVector3 ePos)
 	state.hp --;
 
 	if (state.hp == 0) { 
-		deathSound.Play(false);
+		CSoundSource*	sound = NewGO<CSoundSource>(0);
+		sound->Init("Assets/sound/death.wav");
+		sound->Play(false);	//効果音再生
 		info = isDeath;
 	}
 	else {
 		info = isDamage;
-		damageSound.Play(false);
+		CSoundSource*	sound = NewGO<CSoundSource>(0);
+		sound->Init("Assets/sound/damage.wav");
+		sound->Play(false);	//効果音再生
 	}
 
 	CVector3 back;
@@ -292,9 +291,10 @@ void Player::Damage(CVector3 ePos)
 	back.Normalize();
 
 	//反動のはやさ
-	float b_speed = 4.3f;
+	float b_speed = 10.0f;
 	back.x *= b_speed;
-	back.y *= b_speed;
+	back.y *= (b_speed/2);
+	back.z *= b_speed;
 
 	characterController.SetMoveSpeed(back);			//移動速度を設定
 	characterController.Execute();					//キャラクターコントロール実行
@@ -317,6 +317,7 @@ bool Player::healing()
 void Player::Render(CRenderContext& renderContext)
 {
 	if (scene->isDelete()) { return; }
+	if (info==isDamage && (timer<0.25f)) { return; }
 
 	skinModel.Draw(renderContext, gameCamera->GetViewMatrix(), gameCamera->GetProjectionMatrix());
 }

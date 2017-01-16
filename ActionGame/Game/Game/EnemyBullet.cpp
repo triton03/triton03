@@ -19,13 +19,14 @@ EnemyBullet::EnemyBullet()
 	model.SetLight(&g_defaultLight);
 
 	position = CVector3::Zero;
+	angle = { 1.0f,0.0f,0.0f };
 
 	position.x +=  0.1f;
 
 	origin = position;		//Å‰‚ÌˆÊ’u‚ğ‹L˜^
 	flag = false;
 
-	SE = NewGO<CSoundSource>(0);
+	CSoundSource* SE = NewGO<CSoundSource>(0);
 	SE->Init("Assets/sound/e_shot.wav");
 	SE->Play(false);
 }
@@ -51,7 +52,7 @@ void EnemyBullet::Update() {
 	float lendth = diff.Length();
 
 	//”­–C
-	if (lendth > 70.0f) {
+	if (lendth > 50.0f) {
 		flag = true;
 	}
 	if ((scene->isDelete() )||(g_player->Distance(position) <= 3.0f)) {
@@ -60,7 +61,8 @@ void EnemyBullet::Update() {
 	}
 
 	//’eˆÚ“®
-	position.x +=  speed;
+	position.x += (angle.x*speed);
+	position.z += (angle.z*speed);
 
 	model.Update(position, CQuaternion::Identity, CVector3::One);
 }

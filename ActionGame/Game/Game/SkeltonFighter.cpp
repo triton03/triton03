@@ -28,7 +28,7 @@ SkeltonFighter::~SkeltonFighter()
 
 void SkeltonFighter::Move()
 {
-	if (length > 12.0f) 
+	if (length > 20.0f) 
 	{ 
 		move.x = 0.0f;
 		move.z = 0.0f;
@@ -41,6 +41,8 @@ void SkeltonFighter::Move()
 	
 	move.x = diff.x*speed;
 	move.z = diff.z*speed;
+
+	rotation.SetRotation(CVector3::AxisY, atan2f(diff.x, diff.z));
 
 	if (timer == 0.0f) {
 		move.y = 12.0f;

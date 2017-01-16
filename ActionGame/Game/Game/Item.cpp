@@ -40,7 +40,7 @@ void Item::Update()
 	length = g_player->Distance(position);
 
 	if (!workFlag) {
-		if (length > 40.0f) { return; }
+		if (length > Limit) { return; }
 		workFlag = true;
 	}
 
@@ -54,7 +54,7 @@ void Item::Update()
 
 void Item::Render(CRenderContext& renderContext)
 {
-	if (length > 40.0f) { return; }
+	if (length > Limit) { return; }
 	skinModel.Draw(renderContext, gameCamera->GetViewMatrix(), gameCamera->GetProjectionMatrix());
 }
 

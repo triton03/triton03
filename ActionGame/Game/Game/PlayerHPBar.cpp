@@ -9,7 +9,7 @@
 #define Heart_Y 300.0f
 
 namespace {
-	const CVector2 hpHeartSize = { 80.0f, 60.0f };		//ハートのサイズ
+	const CVector2 hpHeartSize = { 80.0f, 65.0f };		//ハートのサイズ
 	const CVector2 hpHeartPos1 = { -622.00f, Heart_Y };	//1個目のハートの位置
 	const CVector2 hpHeartPos2 = { -535.00f, Heart_Y };	//2個目のハートの位置
 	const CVector2 hpHeartPos3 = { -448.00f, Heart_Y };	//3個目のハートの位置
@@ -59,26 +59,12 @@ void PlayerHPBar::PostRender(CRenderContext& renderContext)
 	int HP = g_player->GetHP();
 
 	//HP数によって表示を変える
-	switch (HP) {
-	case 3:
-		m_hpHeart[2].Draw(renderContext);
-		m_hpHeart[1].Draw(renderContext);
-		m_hpHeart[0].Draw(renderContext);
-		break;
-	case 2:
-		m_hpHeartD[2].Draw(renderContext);
-		m_hpHeart[1].Draw(renderContext);
-		m_hpHeart[0].Draw(renderContext);
-		break;
-	case 1:
-		m_hpHeartD[2].Draw(renderContext);
-		m_hpHeartD[1].Draw(renderContext);
-		m_hpHeart[0].Draw(renderContext);
-		break;
-	default:
-		m_hpHeartD[2].Draw(renderContext);
-		m_hpHeartD[1].Draw(renderContext);
-		m_hpHeartD[0].Draw(renderContext);
-		break;
-	}
+	for (int i = 0; i < 3; i++) {
+		if (HP >= (i + 1)) {
+			m_hpHeart[i].Draw(renderContext);
+		}
+		else {
+			m_hpHeartD[i].Draw(renderContext);
+		}
+	};
 }

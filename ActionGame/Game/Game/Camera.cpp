@@ -44,6 +44,7 @@ void Camera::Update()
 		timer = 0.0f;
 	}
 	
+	target.y += 2.0f;
 
 	camera.SetTarget(target);
 

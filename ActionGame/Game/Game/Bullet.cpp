@@ -28,7 +28,7 @@ Bullet::Bullet()
 	origin = position;		//Å‰‚ÌˆÊ’u‚ğ‹L˜^
 	flag = false;
 
-	SE = NewGO<CSoundSource>(0);
+	CSoundSource* SE = NewGO<CSoundSource>(0);
 	SE->Init("Assets/sound/Shot.wav");
 	SE->Play(false);
 }
@@ -48,7 +48,7 @@ void Bullet::Update() {
 	float lendth = diff.Length();
 
 	//”­–C
-	if (lendth > 70.0f) {
+	if (lendth > 30.0f) {
 		flag = true;
 	}
 
