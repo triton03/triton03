@@ -61,7 +61,7 @@ void SceneManager::Update()
 				state = isStage1;
 				flag = false;
 				ShowSprite* ss = NewGO<ShowSprite>(0);
-				ss->Init(start2);
+				ss->Init(start1);
 			}
 			else {
 				//ステージ生成
@@ -70,7 +70,7 @@ void SceneManager::Update()
 				g_player	= NewGO<Player>(0);		//プレイヤー
 				IFace		= NewGO<Interface>(0);	//インターフェース
 
-				StageLoading(isStage2);		//ステージ１のロード
+				StageLoading(isStage1);		//ステージ１のロード
 
 				flag = true;
 			}

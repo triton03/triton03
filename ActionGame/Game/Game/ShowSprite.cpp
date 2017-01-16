@@ -3,7 +3,7 @@
 
 
 namespace {
-	const CVector2 SSize = { 600.0f, 100.f };
+	const CVector2 SSize = { 558.3f, 100.f };
 	const CVector2 SPos = { 0.0f, 120.0f };
 }
 

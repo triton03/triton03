@@ -285,6 +285,6 @@
 //clearMarker
 {
 	"clearMarker",
-	CVector3(-540.85f, 3.40f, 3.57f),             //平行移動
+	CVector3(-540.85f, 1.0f, -5.57f),             //平行移動
 	CQuaternion(0.00f, 0.00f, 0.00f, 1.00f),  //回転
 },

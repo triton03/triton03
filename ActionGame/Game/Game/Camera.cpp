@@ -36,7 +36,7 @@ void Camera::Update()
 	if (scene->getBossFlag()) {
 		target.x = cameraPos.x;
 		if (timer < 3.0) {
-			target.x -= 0.15f;
+			target.x -= 0.145f;
 			timer += GameTime().GetFrameDeltaTime();
 		}
 	}

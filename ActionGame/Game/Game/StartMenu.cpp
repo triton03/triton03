@@ -18,7 +18,7 @@ StartMenu::~StartMenu()
 void StartMenu::Start()
 {
 //”wŒi
-	backTex.Load("Assets/sprite/test.png");
+	backTex.Load("Assets/sprite/title.png");
 	back.Init(&backTex);
 	back.SetSize(backSize);
 	back.SetPivot({ 0.5f, 0.5f });		//ƒsƒ{ƒbƒg‚Í’†‰›
