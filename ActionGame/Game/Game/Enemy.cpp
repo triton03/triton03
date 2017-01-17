@@ -56,7 +56,7 @@ void Enemy::Update()
 	//anim = currentAnimSetNo;
 
 	//—Ž‰ºŽ€
-	if (centralPos.y < -10.0f) {
+	if (centralPos.y < -15.0f) {
 		state.hp = 0;
 	}
 

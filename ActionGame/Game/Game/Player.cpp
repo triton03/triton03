@@ -114,7 +114,7 @@ void Player::Update()
 			state.time += GameTime().GetFrameDeltaTime();	//プレイ時間カウント
 		}
 		//落下死
-		if (centralPos.y < -10.0f) {
+		if (centralPos.y < -15.0f) {
 			state.hp = 0;
 			info = isDeath;
 			CSoundSource*	sound = NewGO<CSoundSource>(0);
