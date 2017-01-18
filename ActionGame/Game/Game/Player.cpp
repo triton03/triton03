@@ -35,7 +35,7 @@ void Player::Start() {
 	skinModel.SetShadowCasterFlag(true);
 	skinModel.SetShadowReceiverFlag(true);
 
-	CVector3 lightPos = CVector3(0.0f, 25.5f, 24.5f);
+	CVector3 lightPos = CVector3(0.0f, 30.5f, 13.5f);
 	ShadowMap().SetLightPosition(lightPos);
 	ShadowMap().SetLightTarget(position);
 	toLightPos.Subtract(lightPos, position);

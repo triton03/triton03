@@ -49,11 +49,11 @@ void InitTkEngine( HINSTANCE hInst )
 	g_defaultLight.SetDiffuseLightDirection(2, { 0.0f, 0.707f, -0.707f });
 	g_defaultLight.SetDiffuseLightDirection(3, { 0.0f, -0.707f, -0.707f });
 
-	g_defaultLight.SetDiffuseLightColor(0, { 0.2f, 0.2f, 0.2f, 1.0f });
-	g_defaultLight.SetDiffuseLightColor(1, { 0.2f, 0.2f, 0.2f, 1.0f });
+	g_defaultLight.SetDiffuseLightColor(0, { 0.4f, 0.4f, 0.4f, 1.0f });
+	g_defaultLight.SetDiffuseLightColor(1, { 0.4f, 0.4f, 0.4f, 1.0f });
 	g_defaultLight.SetDiffuseLightColor(2, { 0.3f, 0.3f, 0.3f, 1.0f });
-	g_defaultLight.SetDiffuseLightColor(3, { 0.2f, 0.2f, 0.2f, 1.0f });
-	g_defaultLight.SetAmbinetLight({ 0.3f, 0.3f, 0.3f });
+	g_defaultLight.SetDiffuseLightColor(3, { 0.3f, 0.3f, 0.3f, 1.0f });
+	g_defaultLight.SetAmbinetLight({ 0.1f, 0.1f, 0.1f });
 
 	Engine().Init(initParam);	//èâä˙âªÅB
 	
