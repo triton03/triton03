@@ -13,7 +13,7 @@ SMapInfo Stage1[] = {
 };
 
 SMapInfo Stage2[] = {
-#include "locationInfo2_test.h"	//ステージ２
+#include "locationInfo2.h"	//ステージ２
 };
 
 //SMapInfo Stage3[] = {

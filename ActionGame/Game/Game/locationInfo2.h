@@ -174,3 +174,34 @@
 	CVector3(-314.75f, -9.00f, -3.51f),             //平行移動
 	CQuaternion(0.00f, 0.00f, 0.00f, 1.00f),  //回転
 },
+//skelton_mage
+{
+	"skelton_mage",
+	CVector3(-83.42f, 0.24f, 5.28f),             //平行移動
+	CQuaternion(0.00f, 0.00f, 0.00f, 1.00f),  //回転
+},
+//skelton_mage
+{
+	"skelton_mage",
+	CVector3(-274.38f, -9.00f, -3.53f),             //平行移動
+	CQuaternion(0.00f, 0.00f, 0.00f, 1.00f),  //回転
+},
+//skelton_mage
+{
+	"skelton_mage",
+	CVector3(-238.28f, 5.24f, 4.81f),             //平行移動
+	CQuaternion(0.00f, 0.00f, 0.00f, 1.00f),  //回転
+},
+
+//sorcerer_D
+{
+	"sorcerer_D",
+	CVector3(-389.31f, -9.00f, 1.12f),             //平行移動
+	CQuaternion(0.00f, 0.00f, 0.00f, 1.00f),  //回転
+},
+//clearMarker
+{
+	"clearMarker",
+	CVector3(-396.00f, -9.0f, -5.26f),             //平行移動
+	CQuaternion(0.00f, 0.00f, 0.00f, 1.00f),  //回転
+},
