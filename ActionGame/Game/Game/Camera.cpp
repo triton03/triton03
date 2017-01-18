@@ -35,7 +35,8 @@ void Camera::Update()
 	target = g_player->GetPosition();
 	if (scene->getBossFlag()) {
 		target.x = cameraPos.x;
-		if (timer < 3.0) {
+		float bosPos = g_boss->GetPos().x;
+		if ((target.x- bosPos) > 15.0) {
 			target.x -= 0.145f;
 			timer += GameTime().GetFrameDeltaTime();
 		}

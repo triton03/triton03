@@ -28,6 +28,7 @@ private:
 	CVector3	cameraPos;
 	CVector3	target;
 	float		timer;
+	bool		prvBoss=false;
 };
 
 extern Camera* gameCamera;

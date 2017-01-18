@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "Camera.h"
 #include "SceneManager.h"
+#include "Boss.h"
 
 Player* g_player;
 
@@ -234,8 +235,19 @@ CVector3 Player::Move()
 		*/
 
 		//スタート位置より後ろに移動できないようにしてみる(いらないかもしれない)
-		if ((position.x > 2.5) && (move.x > 0)) {
+		if ((position.x > 2.5) && (move.x > 0.0f)) {
 			move.x = 0.0f;
+		}
+
+		//ボス戦の移動可能範囲設定
+		if (scene->getBossFlag()) {
+			CVector3 BPos = g_boss->GetPos();
+			if ((position.x < BPos.x) && (move.x < 0.0f)) {
+				move.x = 0.0f;
+			}
+			if ((position.x > (BPos.x + 30)) && (move.x > 0.0f)) {
+				move.x = 0.0f;
+			}
 		}
 
 		angle.x = -Pad(0).GetLStickXF();

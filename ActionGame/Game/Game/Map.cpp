@@ -58,7 +58,7 @@ void Map::Create(SMapInfo* mapLocInfo,int numObject)
 		}
 		else if (strcmp("clearMarker", mapLocInfo[i].modelName) == 0) {
 			ClearMarker* marker = NewGO<ClearMarker>(0);
-			marker->Init(mapLocInfo[i].position, mapLocInfo[i].rotation);
+			marker->Init(mapLocInfo[i].position);
 		}
 		else {
 			MapChip* mapChip = NewGO<MapChip>(0);

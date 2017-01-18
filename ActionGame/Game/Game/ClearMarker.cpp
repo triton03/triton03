@@ -15,7 +15,7 @@ ClearMarker::~ClearMarker()
 {
 }
 
-void ClearMarker::Init(CVector3 position, CQuaternion rotation)
+void ClearMarker::Init(CVector3 position)
 {
 	//CSkinModel‚ð‰Šú‰»
 	skinModelData.LoadModelData("Assets/modelData/clearMarker.x", NULL);
@@ -30,7 +30,7 @@ void ClearMarker::Init(CVector3 position, CQuaternion rotation)
 	//skinModel.Update(position, rotation, CVector3::One);
 
 	this->position = position;		//ˆÊ’u‚ð‹L˜^
-	this->rotation = rotation;		//‰ñ“]‚ð‹L˜^
+	this->rotation.SetRotation(CVector3::AxisY, CMath::DegToRad(180.0f));
 
 }
 

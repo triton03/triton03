@@ -11,7 +11,7 @@ class ClearMarker : public IGameObject
 public:
 	ClearMarker();
 	~ClearMarker();
-	void Init(CVector3 position, CQuaternion rotation);
+	void Init(CVector3 position);
 	void Update();
 	void Render(CRenderContext& renderContext);
 

@@ -33,6 +33,9 @@ public:
 		return state.hp;
 	}
 
+	CVector3 GetPos() {
+		return position;
+	}
 private:
 
 	float PlayerDiff();
